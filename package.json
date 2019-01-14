@@ -1,0 +1,5 @@
+{
+  "devDependencies": {
+    "@playlyfe/gql": "^2.6.1"
+  }
+}

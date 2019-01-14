@@ -1,0 +1,19 @@
+overwrite: true
+#schema: "http://localhost:4000"
+schema: src/**/*.gql
+documents: null
+generates:
+  src/__generated__/graphql.ts:
+    plugins:
+      - "typescript-common"
+      - "typescript-server"
+      - "typescript-resolvers"
+  ./graphql.schema.json:
+    plugins:
+      - "introspection"
+  dist/__generated__/combinedTypeDefs.graphql:
+    plugins:
+      - "graphql-codegen-schema-ast"
+  src/__generated__/combinedTypeDefs.graphql:
+    plugins:
+      - "graphql-codegen-schema-ast"

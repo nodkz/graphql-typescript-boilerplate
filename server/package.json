@@ -1,0 +1,47 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build-ts": "tsc",
+    "watch": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node,GQLGen\" -c \"yellow.bold,cyan.bold,green.bold\" \"npm run watch-ts\" \"npm run watch-node\" \"npm run watch-gql\"",
+    "watch-ts": "tsc -w",
+    "watch-node": "nodemon dist/index.js",
+    "watch-gql": "nodemon -e gql src/schema/Query/Query.gql",
+    "test": "jest --forceExit --verbose",
+    "watch-test": "npm run test -- --watchAll",
+    "gqlgen": "gql-gen --config codegen.yml"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "apollo-server": "^2.3.1",
+    "graphql": "^14.0.2",
+    "graphql-tools": "^4.0.3"
+  },
+  "devDependencies": {
+    "@types/graphql": "^14.0.4",
+    "@types/jest": "^23.3.12",
+    "concurrently": "^4.1.0",
+    "graphql-code-generator": "^0.15.2",
+    "graphql-codegen-introspection": "^0.15.2",
+    "graphql-codegen-schema-ast": "^0.15.2",
+    "graphql-codegen-typescript-common": "0.15.2",
+    "graphql-codegen-typescript-resolvers": "^0.15.2",
+    "graphql-codegen-typescript-server": "^0.15.2",
+    "jest": "^23.6.0",
+    "nodemon": "^1.18.9",
+    "ts-jest": "^23.10.5",
+    "ts-node": "^7.0.1",
+    "tslint": "^5.12.1",
+    "typescript": "^3.2.2"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "src/__generated__/*",
+      "__generated__/*"
+    ],
+    "delay": "2500"
+  }
+}

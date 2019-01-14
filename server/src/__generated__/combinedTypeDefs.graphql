@@ -1,0 +1,14 @@
+type Article {
+  title: String!
+}
+
+type Query {
+  # A simple type for getting started!
+  hello: String
+  user(id: Int!, err: String): User
+}
+
+type User {
+  name: String!
+  articles: [Article!]!
+}
