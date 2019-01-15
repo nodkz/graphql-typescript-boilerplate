@@ -297,4 +297,5 @@ type User {
   articles: [Article!]!
   friends: User
 }
+
 `;

@@ -10,10 +10,7 @@ generates:
       - "typescript-common"
       - "typescript-server"
       - "typescript-resolvers"
-      - "add": 'export const typeDefs = `'
-      # - "graphql-codegen-schema-ast"
       - "./bin/gql-ast-plugin.js"
-      - "add": '`;'
   src/schema/__generated__/graphql.schema.json:
     plugins:
       - "introspection"
