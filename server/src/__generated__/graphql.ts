@@ -22,8 +22,20 @@ export interface User {
 export interface Article {
   /** `aaa` | `ok` \\\ */
   title: string;
+}
 
-  a?: Maybe<number>;
+export interface Mutation {
+  article?: Maybe<ArticleMutations>;
+
+  log?: Maybe<string>;
+}
+
+export interface ArticleMutations {
+  create?: Maybe<number>;
+
+  update?: Maybe<number>;
+
+  remove?: Maybe<number>;
 }
 
 // ====================================================
@@ -144,8 +156,6 @@ export namespace ArticleResolvers {
   export interface Resolvers<Context = GraphQLContext, TypeParent = Article> {
     /** `aaa` | `ok` \\\ */
     title?: TitleResolver<string, TypeParent, Context>;
-
-    a?: AResolver<Maybe<number>, TypeParent, Context>;
   }
 
   export type TitleResolver<
@@ -153,9 +163,52 @@ export namespace ArticleResolvers {
     Parent = Article,
     Context = GraphQLContext
   > = Resolver<R, Parent, Context>;
-  export type AResolver<
+}
+
+export namespace MutationResolvers {
+  export interface Resolvers<Context = GraphQLContext, TypeParent = {}> {
+    article?: ArticleResolver<Maybe<ArticleMutations>, TypeParent, Context>;
+
+    log?: LogResolver<Maybe<string>, TypeParent, Context>;
+  }
+
+  export type ArticleResolver<
+    R = Maybe<ArticleMutations>,
+    Parent = {},
+    Context = GraphQLContext
+  > = Resolver<R, Parent, Context>;
+  export type LogResolver<
+    R = Maybe<string>,
+    Parent = {},
+    Context = GraphQLContext
+  > = Resolver<R, Parent, Context>;
+}
+
+export namespace ArticleMutationsResolvers {
+  export interface Resolvers<
+    Context = GraphQLContext,
+    TypeParent = ArticleMutations
+  > {
+    create?: CreateResolver<Maybe<number>, TypeParent, Context>;
+
+    update?: UpdateResolver<Maybe<number>, TypeParent, Context>;
+
+    remove?: RemoveResolver<Maybe<number>, TypeParent, Context>;
+  }
+
+  export type CreateResolver<
     R = Maybe<number>,
-    Parent = Article,
+    Parent = ArticleMutations,
+    Context = GraphQLContext
+  > = Resolver<R, Parent, Context>;
+  export type UpdateResolver<
+    R = Maybe<number>,
+    Parent = ArticleMutations,
+    Context = GraphQLContext
+  > = Resolver<R, Parent, Context>;
+  export type RemoveResolver<
+    R = Maybe<number>,
+    Parent = ArticleMutations,
     Context = GraphQLContext
   > = Resolver<R, Parent, Context>;
 }
@@ -197,6 +250,8 @@ export interface IResolvers {
   Query?: QueryResolvers.Resolvers;
   User?: UserResolvers.Resolvers;
   Article?: ArticleResolvers.Resolvers;
+  Mutation?: MutationResolvers.Resolvers;
+  ArticleMutations?: ArticleMutationsResolvers.Resolvers;
 }
 
 export interface IDirectiveResolvers<Result> {
@@ -208,7 +263,17 @@ export const typeDefs = `
 type Article {
   # \`aaa\` | \`ok\` \\\\\\
   title: String!
-  a: Int
+}
+
+type ArticleMutations {
+  create: Float
+  update: Float
+  remove: Float
+}
+
+type Mutation {
+  article: ArticleMutations
+  log: String
 }
 
 type Query {

@@ -1,5 +1,14 @@
 type Article {
   # `aaa` | `ok` \\\
   title: String!
-  a: Int
+}
+
+type ArticleMutations {
+  create: Float
+  update: Float
+  remove: Float
+}
+
+extend type Mutation {
+  article: ArticleMutations
 }
