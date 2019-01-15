@@ -1,0 +1,36 @@
+{
+  "parser": "babel-eslint",
+  "extends": ["airbnb/base", "eslint:recommended", "prettier"],
+  "rules": {
+    "no-use-before-define": 0,
+    "arrow-body-style": 0,
+    "dot-notation": 0,
+    "no-console": 0,
+    "import/prefer-default-export": 0,
+    "semi": 2,
+    "prettier/prettier": [
+      "error",
+      {
+        "printWidth": 100,
+        "singleQuote": true,
+        "trailingComma": "es5",
+        "parser": "babylon"
+      }
+    ],
+    "graphql/template-strings": ["error", {
+      "env": "literal",
+      "tagName": "gql",
+      "schemaJsonFilepath": "./server/src/schema/__generated__/graphql.schema.json"
+    }]
+  },
+  "env": {
+    "jasmine": true,
+    "jest": true
+  },
+  "globals": {
+    "fetch": true,
+    "window": true,
+    "document": true
+  },
+  "plugins": ["prettier", "graphql"]
+}
