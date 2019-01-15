@@ -11,7 +11,7 @@
     "watch-gql": "npm run gql -- --watch",
     "test": "jest --forceExit --verbose",
     "watch-test": "npm run test -- --watchAll",
-    "gql": "mkdirp ./src/__generated__ && gql-gen --config codegen.yml"
+    "gql": "mkdirp ./src/schema/__generated__ && gql-gen --config codegen.yml"
   },
   "author": "",
   "license": "ISC",

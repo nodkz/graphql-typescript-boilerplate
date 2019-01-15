@@ -3,9 +3,9 @@ overwrite: true
 schema: src/**/*.gql
 documents: null
 generates:
-  src/__generated__/graphql.ts:
+  src/schema/__generated__/graphql.ts:
     config:
-      contextType: ../schema/context#GraphQLContext
+      contextType: ../context#GraphQLContext
     plugins:
       - "typescript-common"
       - "typescript-server"
@@ -14,6 +14,6 @@ generates:
       # - "graphql-codegen-schema-ast"
       - "./bin/gql-ast-plugin.js"
       - "add": '`;'
-  src/__generated__/graphql.schema.json:
+  src/schema/__generated__/graphql.schema.json:
     plugins:
       - "introspection"

@@ -1,4 +1,4 @@
-import { IResolvers } from '../../__generated__/graphql';
+import { IResolvers } from '../__generated__/graphql';
 
 export default {
   Mutation: { 

@@ -50,7 +50,7 @@ export interface UserQueryArgs {
 
 import { GraphQLResolveInfo } from "graphql";
 
-import { GraphQLContext } from "../schema/context";
+import { GraphQLContext } from "./context";
 
 export type Resolver<Result, Parent = {}, Context = {}, Args = {}> = (
   parent: Parent,

@@ -1,4 +1,4 @@
-import { IResolvers } from '../../__generated__/graphql';
+import { IResolvers } from '../__generated__/graphql';
 import { test } from './utils';
 
 export default {
