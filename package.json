@@ -27,6 +27,11 @@
     "tslint-plugin-prettier": "^2.0.1",
     "typescript": "^3.2.2"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
   "lint-staged": {
     "*.{js,jsx}": [
       "eslint --fix",
@@ -45,10 +50,5 @@
     "lint": "npm run eslint && npm run tslint",
     "eslint": "eslint --fix --ext js --ext jsx .",
     "tslint": "tslint --fix -p tsconfig.json -c tslint.json"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
   }
 }
