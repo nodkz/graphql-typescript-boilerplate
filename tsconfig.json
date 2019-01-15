@@ -15,6 +15,11 @@
     "pretty": true,
     "removeComments": true,
     "skipLibCheck": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "strictBindCallApply": true,
+    "strictNullChecks": true
   },
   "include": [
     "**/typings.d.ts",
