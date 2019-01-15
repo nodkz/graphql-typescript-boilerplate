@@ -1,7 +1,4 @@
 {
-  "ignore": ["__generated__/*", "__tests__/*", "graphql.schema.json"],
-  "ext": "js,json,gql",
-  "execMap": {
-    "gql": "yarn gqlgen"
-  }
+  "ignore": ["__tests__/*", "graphql.schema.json"],
+  "ext": "js,json"
 }

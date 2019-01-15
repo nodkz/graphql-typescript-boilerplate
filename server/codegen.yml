@@ -8,12 +8,10 @@ generates:
       - "typescript-common"
       - "typescript-server"
       - "typescript-resolvers"
-  ./graphql.schema.json:
+      - "add": 'export const typeDefs = `'
+      # - "graphql-codegen-schema-ast"
+      - "./bin/gql-ast-plugin.js"
+      - "add": '`;'
+  src/__generated__/graphql.schema.json:
     plugins:
       - "introspection"
-  dist/__generated__/combinedTypeDefs.graphql:
-    plugins:
-      - "graphql-codegen-schema-ast"
-  src/__generated__/combinedTypeDefs.graphql:
-    plugins:
-      - "graphql-codegen-schema-ast"

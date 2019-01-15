@@ -1,3 +1,5 @@
 type Article {
+  # `aaa` | `ok` \\\
   title: String!
+  a: Int
 }

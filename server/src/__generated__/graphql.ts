@@ -18,7 +18,10 @@ export interface User {
 }
 
 export interface Article {
+  /** `aaa` | `ok` \\\ */
   title: string;
+
+  a?: Maybe<number>;
 }
 
 // ====================================================
@@ -128,11 +131,19 @@ export namespace UserResolvers {
 
 export namespace ArticleResolvers {
   export interface Resolvers<Context = {}, TypeParent = Article> {
+    /** `aaa` | `ok` \\\ */
     title?: TitleResolver<string, TypeParent, Context>;
+
+    a?: AResolver<Maybe<number>, TypeParent, Context>;
   }
 
   export type TitleResolver<
     R = string,
+    Parent = Article,
+    Context = {}
+  > = Resolver<R, Parent, Context>;
+  export type AResolver<
+    R = Maybe<number>,
     Parent = Article,
     Context = {}
   > = Resolver<R, Parent, Context>;
@@ -182,3 +193,21 @@ export interface IDirectiveResolvers<Result> {
   include?: IncludeDirectiveResolver<Result>;
   deprecated?: DeprecatedDirectiveResolver<Result>;
 }
+export const typeDefs = `
+type Article {
+  # \`aaa\` | \`ok\` \\\\\\
+  title: String!
+  a: Int
+}
+
+type Query {
+  # A simple type for getting started!
+  hello: String
+  user(id: Int!, err: String): User
+}
+
+type User {
+  name: String!
+  articles: [Article!]!
+}
+`;
