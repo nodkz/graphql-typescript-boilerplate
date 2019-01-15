@@ -1,7 +1,9 @@
 import { IResolvers } from '../__generated__/graphql';
 
-export default {
+const resolvers: IResolvers = {
   Query: {
     hello: (_, __, context) => `Hello, ${context.ip}`,
-  }
-} as IResolvers;
+  },
+};
+
+export default resolvers;

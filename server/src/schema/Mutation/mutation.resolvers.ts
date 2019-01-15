@@ -1,10 +1,11 @@
 import { IResolvers } from '../__generated__/graphql';
 
-export default {
-  Mutation: { 
+const resolvers: IResolvers = {
+  Mutation: {
     log: () => {
-      console.log(new Date());
-      return '123';
+      return '123456';
     },
-  }
-} as IResolvers;
+  },
+};
+
+export default resolvers;

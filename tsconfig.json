@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "es6",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowJs": true,
+    "noEmit": true,
+    "noUnusedLocals": true,
+    "lib": ["es2015", "esnext"],
+    "noImplicitAny": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "pretty": true,
+    "removeComments": true,
+    "skipLibCheck": true,
+  },
+  "include": [
+    "**/typings.d.ts",
+    "**/*.ts",
+    "**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

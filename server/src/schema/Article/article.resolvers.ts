@@ -1,7 +1,7 @@
 import { IResolvers } from '../__generated__/graphql';
 import { test } from './utils';
 
-export default {
+const resolvers: IResolvers = {
   Article: {
     title: test,
   },
@@ -17,9 +17,11 @@ export default {
     remove: () => {
       console.log('Article added');
       return Date.now();
-    }
+    },
   },
   Mutation: {
     article: () => ({}),
-  }
-} as IResolvers;
+  },
+};
+
+export default resolvers;

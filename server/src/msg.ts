@@ -1,3 +1,3 @@
-export function msg(i?: Number) {
+export function msg(i?: number) {
   return `${i || 123}`;
 }

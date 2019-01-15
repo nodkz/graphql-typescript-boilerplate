@@ -114,10 +114,25 @@
     parse-glob "3.0.4"
     promise-retry "1.1.1"
 
+"@types/graphql@^0.8.2":
+  version "0.8.6"
+  resolved "https://registry.yarnpkg.com/@types/graphql/-/graphql-0.8.6.tgz#b34fb880493ba835b0c067024ee70130d6f9bb68"
+  integrity sha1-s0+4gEk7qDWwwGcCTucBMNb5u2g=
+
 "@types/jest@^23.3.12":
   version "23.3.12"
   resolved "https://registry.yarnpkg.com/@types/jest/-/jest-23.3.12.tgz#7e0ced251fa94c3bc2d1023d4b84b2992fa06376"
   integrity sha512-/kQvbVzdEpOq4tEWT79yAHSM4nH4xMlhJv2GrLVQt4Qmo8yYsPdioBM1QpN/2GX1wkfMnyXvdoftvLUr0LBj7Q==
+
+"@types/lodash@^4.14.43":
+  version "4.14.119"
+  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.119.tgz#be847e5f4bc3e35e46d041c394ead8b603ad8b39"
+  integrity sha512-Z3TNyBL8Vd/M9D9Ms2S3LmFq2sSMzahodD6rCS9V2N44HUMINb75jNkSuwAx7eo2ufqTdfOdtGQpNbieUjPQmw==
+
+"@types/node@7.0.8":
+  version "7.0.8"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-7.0.8.tgz#25e4dd804b630c916ae671233e6d71f6ce18124a"
+  integrity sha1-JeTdgEtjDJFq5nEjPm1x9s4YEko=
 
 acorn-jsx@^5.0.0:
   version "5.0.1"
@@ -943,7 +958,7 @@ graphql-request@^1.5.0:
   dependencies:
     cross-fetch "2.2.2"
 
-graphql@0.9.6, graphql@^0.9.5, graphql@^0.9.6:
+graphql@0.9.6, graphql@^0.9.1, graphql@^0.9.5, graphql@^0.9.6:
   version "0.9.6"
   resolved "https://registry.yarnpkg.com/graphql/-/graphql-0.9.6.tgz#514421e9d225c29dfc8fd305459abae58815ef2c"
   integrity sha1-UUQh6dIlwp38j9MFRZq65YgV7yw=
@@ -1284,7 +1299,7 @@ locate-path@^2.0.0:
     p-locate "^2.0.0"
     path-exists "^3.0.0"
 
-lodash@4.17.11, lodash@^4.11.1, lodash@^4.17.10, lodash@^4.17.11, lodash@^4.17.4, lodash@^4.17.5:
+lodash@4.17.11, lodash@^4.11.1, lodash@^4.17.10, lodash@^4.17.11, lodash@^4.17.2, lodash@^4.17.4, lodash@^4.17.5:
   version "4.17.11"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.11.tgz#b39ea6229ef607ecd89e2c8df12536891cac9b8d"
   integrity sha512-cQKh8igo5QUhZ7lg38DYWAxMvjSAKG0A8wGSVimP07SIUEK2UO+arSRKbRZWtelMtN5V0Hkwh5ryOto/SshYIg==
@@ -1989,6 +2004,17 @@ tslint-config-prettier@^1.17.0:
   version "1.17.0"
   resolved "https://registry.yarnpkg.com/tslint-config-prettier/-/tslint-config-prettier-1.17.0.tgz#946ed6117f98f3659a65848279156d87628c33dc"
   integrity sha512-NKWNkThwqE4Snn4Cm6SZB7lV5RMDDFsBwz6fWUkTxOKGjMx8ycOHnjIbhn7dZd5XmssW3CwqUjlANR6EhP9YQw==
+
+tslint-plugin-graphql@^0.0.6:
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/tslint-plugin-graphql/-/tslint-plugin-graphql-0.0.6.tgz#2512c68db117d1845c6de11422ee7d0f91c63463"
+  integrity sha512-hnkkkqRtvK7KAKlXHmPaSg9h6aJ8Kpil6wL2AKhr+RpfXsRXTIgKxSDRvmuMga0ORtKamaETjsUml6lm33fl3w==
+  dependencies:
+    "@types/graphql" "^0.8.2"
+    "@types/lodash" "^4.14.43"
+    "@types/node" "7.0.8"
+    graphql "^0.9.1"
+    lodash "^4.17.2"
 
 tslint-plugin-prettier@^2.0.1:
   version "2.0.1"

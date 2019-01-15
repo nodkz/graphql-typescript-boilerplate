@@ -1,14 +1,11 @@
-import path from 'path';
+import { join } from 'path';
 import { makeExecutableSchema } from 'graphql-tools';
+import { mergeResolvers, fileLoader } from 'merge-graphql-schemas';
 import { typeDefs } from './__generated__/graphql';
 import { prepareContext } from './context';
-import { mergeResolvers, fileLoader } from 'merge-graphql-schemas';
 
-const resolvers = mergeResolvers(fileLoader(path.join(__dirname, "./**/*.resolvers.*")));
+const resolvers = mergeResolvers(fileLoader(join(__dirname, './**/*.resolvers.*')));
 
 const schema = makeExecutableSchema({ typeDefs, resolvers });
 
-export {
-  schema,
-  prepareContext,
-};
+export { schema, prepareContext };
