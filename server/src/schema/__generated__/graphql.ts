@@ -14,6 +14,8 @@ export interface Query {
 export interface User {
   name: string;
 
+  ip: string;
+
   articles: Article[];
 
   friends?: Maybe<User>;
@@ -50,7 +52,7 @@ export interface UserQueryArgs {
 
 import { GraphQLResolveInfo } from "graphql";
 
-import { GraphQLContext } from "./context";
+import { GraphQLContext } from "../context";
 
 export type Resolver<Result, Parent = {}, Context = {}, Args = {}> = (
   parent: Parent,
@@ -130,12 +132,19 @@ export namespace UserResolvers {
   export interface Resolvers<Context = GraphQLContext, TypeParent = User> {
     name?: NameResolver<string, TypeParent, Context>;
 
+    ip?: IpResolver<string, TypeParent, Context>;
+
     articles?: ArticlesResolver<Article[], TypeParent, Context>;
 
     friends?: FriendsResolver<Maybe<User>, TypeParent, Context>;
   }
 
   export type NameResolver<
+    R = string,
+    Parent = User,
+    Context = GraphQLContext
+  > = Resolver<R, Parent, Context>;
+  export type IpResolver<
     R = string,
     Parent = User,
     Context = GraphQLContext
@@ -284,6 +293,7 @@ type Query {
 
 type User {
   name: String!
+  ip: String!
   articles: [Article!]!
   friends: User
 }

@@ -1,5 +1,10 @@
 type User {
   name: String!
+  ip: String!
   articles: [Article!]! 
   friends: User
+}
+
+extend type Query {
+  user(id: Int!, err: String): User
 }

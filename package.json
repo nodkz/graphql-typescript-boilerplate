@@ -1,5 +1,6 @@
 {
   "devDependencies": {
-    "@playlyfe/gql": "^2.6.1"
+    "@playlyfe/gql": "^2.6.1",
+    "@types/jest": "^23.3.12"
   }
 }

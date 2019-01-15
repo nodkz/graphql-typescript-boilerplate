@@ -1,5 +1,6 @@
+// see config options https://github.com/Mayank1791989/gql
 {
-   schema: {
-     files: 'server/src/schema/**/*.gql'
-   }
+  schema: {
+    files: 'server/src/schema/**/*.gql'
+  }
  }
