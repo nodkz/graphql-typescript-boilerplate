@@ -4,6 +4,8 @@ schema: src/**/*.gql
 documents: null
 generates:
   src/__generated__/graphql.ts:
+    config:
+      contextType: ../schema/context#GraphQLContext
     plugins:
       - "typescript-common"
       - "typescript-server"

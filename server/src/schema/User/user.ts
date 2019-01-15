@@ -1,7 +1,10 @@
 import { IResolvers } from '../../__generated__/graphql';
 
 const User: IResolvers['User'] = {
-  articles: (_) => (_.articles)
+  name: (_, __, context) => `${_.name} ${context.ip}`,
+  articles: (source, args, context) => {
+    return source.articles;
+  }
 }
 
 export default User;

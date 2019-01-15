@@ -15,6 +15,8 @@ export interface User {
   name: string;
 
   articles: Article[];
+
+  friends?: Maybe<User>;
 }
 
 export interface Article {
@@ -35,6 +37,8 @@ export interface UserQueryArgs {
 }
 
 import { GraphQLResolveInfo } from "graphql";
+
+import { GraphQLContext } from "../schema/context";
 
 export type Resolver<Result, Parent = {}, Context = {}, Args = {}> = (
   parent: Parent,
@@ -86,7 +90,7 @@ export type DirectiveResolverFn<TResult, TArgs = {}, TContext = {}> = (
 ) => TResult | Promise<TResult>;
 
 export namespace QueryResolvers {
-  export interface Resolvers<Context = {}, TypeParent = {}> {
+  export interface Resolvers<Context = GraphQLContext, TypeParent = {}> {
     /** A simple type for getting started! */
     hello?: HelloResolver<Maybe<string>, TypeParent, Context>;
 
@@ -96,12 +100,12 @@ export namespace QueryResolvers {
   export type HelloResolver<
     R = Maybe<string>,
     Parent = {},
-    Context = {}
+    Context = GraphQLContext
   > = Resolver<R, Parent, Context>;
   export type UserResolver<
     R = Maybe<User>,
     Parent = {},
-    Context = {}
+    Context = GraphQLContext
   > = Resolver<R, Parent, Context, UserArgs>;
   export interface UserArgs {
     id: number;
@@ -111,26 +115,33 @@ export namespace QueryResolvers {
 }
 
 export namespace UserResolvers {
-  export interface Resolvers<Context = {}, TypeParent = User> {
+  export interface Resolvers<Context = GraphQLContext, TypeParent = User> {
     name?: NameResolver<string, TypeParent, Context>;
 
     articles?: ArticlesResolver<Article[], TypeParent, Context>;
+
+    friends?: FriendsResolver<Maybe<User>, TypeParent, Context>;
   }
 
-  export type NameResolver<R = string, Parent = User, Context = {}> = Resolver<
-    R,
-    Parent,
-    Context
-  >;
+  export type NameResolver<
+    R = string,
+    Parent = User,
+    Context = GraphQLContext
+  > = Resolver<R, Parent, Context>;
   export type ArticlesResolver<
     R = Article[],
     Parent = User,
-    Context = {}
+    Context = GraphQLContext
+  > = Resolver<R, Parent, Context>;
+  export type FriendsResolver<
+    R = Maybe<User>,
+    Parent = User,
+    Context = GraphQLContext
   > = Resolver<R, Parent, Context>;
 }
 
 export namespace ArticleResolvers {
-  export interface Resolvers<Context = {}, TypeParent = Article> {
+  export interface Resolvers<Context = GraphQLContext, TypeParent = Article> {
     /** `aaa` | `ok` \\\ */
     title?: TitleResolver<string, TypeParent, Context>;
 
@@ -140,12 +151,12 @@ export namespace ArticleResolvers {
   export type TitleResolver<
     R = string,
     Parent = Article,
-    Context = {}
+    Context = GraphQLContext
   > = Resolver<R, Parent, Context>;
   export type AResolver<
     R = Maybe<number>,
     Parent = Article,
-    Context = {}
+    Context = GraphQLContext
   > = Resolver<R, Parent, Context>;
 }
 
@@ -153,7 +164,7 @@ export namespace ArticleResolvers {
 export type SkipDirectiveResolver<Result> = DirectiveResolverFn<
   Result,
   SkipDirectiveArgs,
-  {}
+  GraphQLContext
 >;
 export interface SkipDirectiveArgs {
   /** Skipped when true. */
@@ -164,7 +175,7 @@ export interface SkipDirectiveArgs {
 export type IncludeDirectiveResolver<Result> = DirectiveResolverFn<
   Result,
   IncludeDirectiveArgs,
-  {}
+  GraphQLContext
 >;
 export interface IncludeDirectiveArgs {
   /** Included when true. */
@@ -175,7 +186,7 @@ export interface IncludeDirectiveArgs {
 export type DeprecatedDirectiveResolver<Result> = DirectiveResolverFn<
   Result,
   DeprecatedDirectiveArgs,
-  {}
+  GraphQLContext
 >;
 export interface DeprecatedDirectiveArgs {
   /** Explains why this element was deprecated, usually also including a suggestion for how to access supported similar data. Formatted using the Markdown syntax (as specified by [CommonMark](https://commonmark.org/). */
@@ -209,5 +220,6 @@ type Query {
 type User {
   name: String!
   articles: [Article!]!
+  friends: User
 }
 `;
