@@ -1,6 +1,14 @@
 // see config options https://github.com/Mayank1791989/gql
 {
   schema: {
-    files: 'server/src/schema/**/*.gql'
+    files: 'server/src/schema/__generated__/schema.graphql'
+  },
+  query: {
+    files: [
+      {
+        match: 'client/src/*.tsx',
+        parser: ['EmbeddedQueryParser', { startTag: 'gql`', endTag: '`' }],
+      },
+    ]
   }
  }

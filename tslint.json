@@ -26,7 +26,7 @@
       {
         "env": "apollo",
         "tagName": "gql",
-        "schemaJsonFilepath": "./server/src/schema/__generated__/graphql.schema.json"
+        "schemaJsonFilepath": "./server/src/schema/__generated__/schema.graphql.json"
       }
     ],
     "max-classes-per-file": false,

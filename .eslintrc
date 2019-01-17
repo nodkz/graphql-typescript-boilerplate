@@ -20,7 +20,7 @@
     "graphql/template-strings": ["error", {
       "env": "literal",
       "tagName": "gql",
-      "schemaJsonFilepath": "./server/src/schema/__generated__/graphql.schema.json"
+      "schemaJsonFilepath": "./server/src/schema/__generated__/schema.graphql.json"
     }]
   },
   "env": {
