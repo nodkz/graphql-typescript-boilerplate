@@ -1,8 +1,8 @@
 // see config options https://github.com/Mayank1791989/gql
 {
   schema: {
-    files: '../server/src/schema/__generated__/schema.graphql' // for Client query autosuggesting
-    // files: 'src/schema/**/*.gql' // for Server GoTo Definition
+    files: 'server/src/schema/__generated__/schema.graphql' // for Client query autosuggesting
+    // files: 'server/src/schema/**/*.gql' // for Server GoTo Definition
   },
   query: {
     files: [

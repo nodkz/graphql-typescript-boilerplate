@@ -11,6 +11,8 @@ import { Link } from 'react-router-dom';
 import createBrowserHistory from 'history/createBrowserHistory';
 import 'whatwg-fetch';
 import './App.css';
+import User from './User';
+import Hello from './Hello';
 
 const browserHistory = createBrowserHistory();
 
@@ -46,20 +48,6 @@ const link = ApolloLink.from([
 const client = new ApolloClient({ cache, link });
 (window as any).aaa = cache;
 
-const q = gql`
-  query {
-    hello
-  }
-`;
-
-console.log(q);
-
-client
-  .query({
-    query: q,
-  })
-  .then(r => console.log(r));
-
 class App extends Component {
   public render() {
     return (
@@ -73,12 +61,12 @@ class App extends Component {
               </p>
             </div>
             <div>
-              <Link to="/">Home</Link> <Link to="/aaa">AAA</Link> <Link to="/bbb">BBB</Link>
+              <Link to="/">Home</Link> <Link to="/user">User</Link> <Link to="/hello">Hello</Link>
             </div>
 
             <Switch>
-              <Route path="/aaa" render={() => <div>aaa</div>} />
-              <Route path="/bbb" render={() => <div>bbb</div>} />
+              <Route path="/user" component={User} />
+              <Route path="/hello" component={Hello} />
               <Route render={() => <div>home</div>} />
             </Switch>
           </div>
