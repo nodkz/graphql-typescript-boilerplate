@@ -1,0 +1,28 @@
+type Article {
+  # `aaa` | `ok` \\\
+  title: String!
+}
+
+type ArticleMutations {
+  create: Float
+  update: Float
+  remove: Float
+}
+
+type Mutation {
+  article: ArticleMutations
+  log: String
+}
+
+type Query {
+  # A simple type for getting started!
+  hello: String
+  user(id: Int!, err: String): User
+}
+
+type User {
+  name: String!
+  ip: String!
+  articles: [Article!]!
+  friends: User
+}
