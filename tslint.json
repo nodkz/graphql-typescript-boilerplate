@@ -37,7 +37,6 @@
     "interface-name": [true, "never-prefix"],
     "jsdoc-format": true,
     "label-position": true,
-    "member-access": true,
     "member-ordering": [
       true,
       {
