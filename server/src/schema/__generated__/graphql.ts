@@ -44,6 +44,9 @@ export interface ArticleMutations {
 // Arguments
 // ====================================================
 
+export interface HelloQueryArgs {
+  arg?: string;
+}
 export interface UserQueryArgs {
   id: number;
 
@@ -115,7 +118,11 @@ export namespace QueryResolvers {
     R = Maybe<string>,
     Parent = {},
     Context = GraphQLContext
-  > = Resolver<R, Parent, Context>;
+  > = Resolver<R, Parent, Context, HelloArgs>;
+  export interface HelloArgs {
+    arg?: string;
+  }
+
   export type UserResolver<
     R = Maybe<User>,
     Parent = {},
@@ -287,7 +294,7 @@ type Mutation {
 
 type Query {
   # A simple type for getting started!
-  hello: String
+  hello(arg: String = "dsd"): String
   user(id: Int!, err: String): User
 }
 

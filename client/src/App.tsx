@@ -11,9 +11,7 @@ import { Link } from 'react-router-dom';
 import createBrowserHistory from 'history/createBrowserHistory';
 import 'whatwg-fetch';
 import './App.css';
-import User from './User';
-import Hello from './Hello';
-
+import User from './pages/User';
 const browserHistory = createBrowserHistory();
 
 const cache = new InMemoryCache();
@@ -61,12 +59,12 @@ class App extends Component {
               </p>
             </div>
             <div>
-              <Link to="/">Home</Link> <Link to="/user">User</Link> <Link to="/hello">Hello</Link>
+              <Link to="/">Home</Link> <Link to="/user">User</Link> <Link to="/bbb">BBB</Link>
             </div>
 
             <Switch>
-              <Route path="/user" component={User} />
-              <Route path="/hello" component={Hello} />
+              <Route path="/user" render={() => <User />} />
+              <Route path="/bbb" render={() => <div>bbb</div>} />
               <Route render={() => <div>home</div>} />
             </Switch>
           </div>

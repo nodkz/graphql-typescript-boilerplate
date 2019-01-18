@@ -34,7 +34,6 @@
     "class-name": true,
     "eofline": true,
     "forin": true,
-    "interface-name": [true, "never-prefix"],
     "jsdoc-format": true,
     "label-position": true,
     "member-ordering": [

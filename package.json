@@ -53,6 +53,6 @@
     "lint": "npm run eslint && npm run tslint",
     "eslint": "eslint --fix --ext js --ext jsx .",
     "tslint": "tslint --fix -p tsconfig.json -c tslint.json",
-    "watch": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node,GQLGen,Client\" -c \"yellow.bold,cyan.bold,green.bold,blue.bold\" \"cd ./server && npm run watch-ts\" \"cd ./server && npm run watch-node\" \"cd ./server && npm run watch-gql\" \"cd ./client && npm run start\""
+    "watch": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node,GQLGen,Client\" -c \"yellow.bold,cyan.bold,green.bold,blue.bold\" \"cd ./server && npm run watch-ts\" \"cd ./server && npm run watch-node\" \"cd ./server && npm run watch-gql\" \"cd ./client && npm run start \" \"cd ./client && npm run watch-gql \""
   }
 }

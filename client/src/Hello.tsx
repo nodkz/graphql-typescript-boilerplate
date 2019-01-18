@@ -8,7 +8,7 @@ export default class Hello extends Component {
       <Query
         fetchPolicy="network-only"
         query={gql`
-          query User {
+          query HelloUser {
             hello
           }
         `}
