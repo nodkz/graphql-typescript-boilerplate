@@ -11,6 +11,7 @@
   "devDependencies": {
     "@playlyfe/gql": "^2.6.1",
     "@types/jest": "^23.3.12",
+    "apollo": "^2.3.0",
     "babel-eslint": "9.0.0",
     "concurrently": "^4.1.0",
     "eslint": "5.6.0",
@@ -30,7 +31,7 @@
     "tslint-plugin-prettier": "^2.0.1",
     "typescript": "^3.2.2"
   },
-  "husky": {
+  "husky-DISABLED": {
     "hooks": {
       "pre-commit": "lint-staged"
     }
@@ -53,6 +54,7 @@
     "lint": "npm run eslint && npm run tslint",
     "eslint": "eslint --fix --ext js --ext jsx .",
     "tslint": "tslint --fix -p tsconfig.json -c tslint.json",
-    "watch": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node,GQLGen,Client\" -c \"yellow.bold,cyan.bold,green.bold,blue.bold\" \"cd ./server && npm run watch-ts\" \"cd ./server && npm run watch-node\" \"cd ./server && npm run watch-gql\" \"cd ./client && npm run start \" \"cd ./client && npm run watch-gql \""
+    "watch-old": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Server,ServerGCG,Client,ClientGCG\" -c \"green.bold,yellow.bold,magenta.bold,blue.bold,cyan.bold\" \"cd ./server && npm run watch-ts\" \"cd ./server && npm run watch-node\" \"cd ./server && npm run watch-gcg\" \"cd ./client && npm run start \" \"cd ./client && npm run watch-gcg \"",
+    "watch": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Server,ServerGCG,Client,ClientGCG\" -c \"green.bold,yellow.bold,magenta.bold,blue.bold,cyan.bold\" \"cd ./server && npm run watch-ts\" \"cd ./server && npm run watch-node\" \"cd ./server && npm run watch-gcg\" \"cd ./client && npm run start \""
   }
 }

@@ -1,6 +1,7 @@
 # See https://graphql-code-generator.com/docs/plugins/
 
 overwrite: true
+# schema: "http://localhost:4000"
 schema: src/**/*.gql
 documents: null
 generates:
@@ -11,7 +12,7 @@ generates:
       - "typescript-common"
       - "typescript-server"
       - "typescript-resolvers"
-      - "./bin/gql-ast-plugin.js"
+      - "./bin/graphql-code-generator-custom-ast-plugin.js"
   src/schema/__generated__/schema.graphql.json:
     plugins:
       - "introspection"

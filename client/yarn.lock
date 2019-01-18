@@ -4610,7 +4610,7 @@ graphql-codegen-core@0.15.2:
     ts-log "2.1.4"
     winston "3.1.0"
 
-graphql-codegen-fragment-matcher@0.15.2:
+graphql-codegen-fragment-matcher@^0.15.2:
   version "0.15.2"
   resolved "https://registry.yarnpkg.com/graphql-codegen-fragment-matcher/-/graphql-codegen-fragment-matcher-0.15.2.tgz#273895fa27aa90d465758aac7916c083afacca5a"
   integrity sha512-6O6RK3jVmq4aWMAvf739vMBZqK0LNT2SPfXahsesQz4BCQn4m1I6Wt7vN4W9BD+4Qw3v1Oi3AolXOtxof7TUGA==
@@ -4623,7 +4623,7 @@ graphql-codegen-plugin-helpers@0.15.2:
     graphql-codegen-core "0.15.2"
     import-from "2.1.0"
 
-graphql-codegen-typescript-client@0.15.2:
+graphql-codegen-typescript-client@^0.15.2:
   version "0.15.2"
   resolved "https://registry.yarnpkg.com/graphql-codegen-typescript-client/-/graphql-codegen-typescript-client-0.15.2.tgz#37fab175306e37a2b814f84361f1ec4c3db06dc1"
   integrity sha512-aPmIU4t6nYi9/rDgGm/WopHk7WHO5S93H7HS6WJwVb/VNbOaoz/Buvtb/jt4ljD+30kdaFMOoTFB3P8Zwg0i5g==
@@ -4632,7 +4632,7 @@ graphql-codegen-typescript-client@0.15.2:
     graphql-codegen-plugin-helpers "0.15.2"
     graphql-codegen-typescript-common "0.15.2"
 
-graphql-codegen-typescript-common@0.15.2:
+graphql-codegen-typescript-common@0.15.2, graphql-codegen-typescript-common@^0.15.2:
   version "0.15.2"
   resolved "https://registry.yarnpkg.com/graphql-codegen-typescript-common/-/graphql-codegen-typescript-common-0.15.2.tgz#9368ca0d9a4f2938823d3dc80b364cd337c686df"
   integrity sha512-y4LVrSpqGFiXv1SxeVjZZtoTpo/Y9JXxWtu7h5xHQquao6cp4K1wtkwUxzJwR86Me6InLjK+dBvNtrBnnet2Rw==

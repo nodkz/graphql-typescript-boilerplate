@@ -1,21 +1,19 @@
 import React, { Component } from 'react';
 import gql from 'graphql-tag';
-// import { UserHOC, UserVariables } from '../../__generated__/components';
-import { number } from 'prop-types';
-
-// interface IUser {}
+import MyQuery from './MyQuery';
 
 class User extends Component {
   public render() {
     return (
       <div>
-        <p>User id:</p>
+        <h1>User: </h1>
+        <p>{JSON.stringify(this.props)}</p>
       </div>
     );
   }
 }
 
-export const USER = gql`
+export const UserQuery = gql`
   query User($id: Int!) {
     user(id: $id) {
       name
@@ -23,4 +21,4 @@ export const USER = gql`
   }
 `;
 
-export default User;
+export default () => <MyQuery component={User} query={UserQuery} variables={{ id: 123 }} />;
