@@ -54,6 +54,7 @@
     "lint": "npm run eslint && npm run tslint",
     "eslint": "eslint --fix --ext js --ext jsx .",
     "tslint": "tslint --fix -p tsconfig.json -c tslint.json",
+    "apollo-gen": "/Users/nodkz/www/gql-test/node_modules/.bin/apollo client:codegen --target=typescript --localSchemaFile=server/src/schema/__generated__/schema.graphql --includes=./client/src/components/User.tsx --tagName gql",
     "watch-old": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Server,ServerGCG,Client,ClientGCG\" -c \"green.bold,yellow.bold,magenta.bold,blue.bold,cyan.bold\" \"cd ./server && npm run watch-ts\" \"cd ./server && npm run watch-node\" \"cd ./server && npm run watch-gcg\" \"cd ./client && npm run start \" \"cd ./client && npm run watch-gcg \"",
     "watch": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Server,ServerGCG,Client,ClientGCG\" -c \"green.bold,yellow.bold,magenta.bold,blue.bold,cyan.bold\" \"cd ./server && npm run watch-ts\" \"cd ./server && npm run watch-node\" \"cd ./server && npm run watch-gcg\" \"cd ./client && npm run start \""
   }

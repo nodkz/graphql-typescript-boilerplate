@@ -24,6 +24,12 @@ export interface User {
 export interface Article {
   /** `aaa` | `ok` \\\ */
   title: string;
+
+  desc?: Maybe<string>;
+
+  createdAt?: Maybe<number>;
+
+  updatedAt?: Maybe<number>;
 }
 
 export interface Mutation {
@@ -172,10 +178,31 @@ export namespace ArticleResolvers {
   export interface Resolvers<Context = GraphQLContext, TypeParent = Article> {
     /** `aaa` | `ok` \\\ */
     title?: TitleResolver<string, TypeParent, Context>;
+
+    desc?: DescResolver<Maybe<string>, TypeParent, Context>;
+
+    createdAt?: CreatedAtResolver<Maybe<number>, TypeParent, Context>;
+
+    updatedAt?: UpdatedAtResolver<Maybe<number>, TypeParent, Context>;
   }
 
   export type TitleResolver<
     R = string,
+    Parent = Article,
+    Context = GraphQLContext
+  > = Resolver<R, Parent, Context>;
+  export type DescResolver<
+    R = Maybe<string>,
+    Parent = Article,
+    Context = GraphQLContext
+  > = Resolver<R, Parent, Context>;
+  export type CreatedAtResolver<
+    R = Maybe<number>,
+    Parent = Article,
+    Context = GraphQLContext
+  > = Resolver<R, Parent, Context>;
+  export type UpdatedAtResolver<
+    R = Maybe<number>,
     Parent = Article,
     Context = GraphQLContext
   > = Resolver<R, Parent, Context>;
@@ -279,6 +306,9 @@ export const typeDefs = `
 type Article {
   # \`aaa\` | \`ok\` \\\\\\
   title: String!
+  desc: String
+  createdAt: Int
+  updatedAt: Int
 }
 
 type ArticleMutations {

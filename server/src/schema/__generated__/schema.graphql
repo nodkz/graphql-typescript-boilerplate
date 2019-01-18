@@ -1,6 +1,9 @@
 type Article {
   # `aaa` | `ok` \\\
   title: String!
+  desc: String
+  createdAt: Int
+  updatedAt: Int
 }
 
 type ArticleMutations {
