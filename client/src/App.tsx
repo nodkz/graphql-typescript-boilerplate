@@ -46,20 +46,6 @@ const link = ApolloLink.from([
 const client = new ApolloClient({ cache, link });
 (window as any).aaa = cache;
 
-const q = gql`
-  query {
-    hello
-  }
-`;
-
-console.log(q);
-
-client
-  .query({
-    query: q,
-  })
-  .then(r => console.log(r));
-
 class App extends Component {
   public render() {
     return (

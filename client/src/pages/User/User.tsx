@@ -1,20 +1,26 @@
 import React, { Component } from 'react';
 import gql from 'graphql-tag';
+import { UserHOC, UserVariables } from '../../__generated__/components';
+import { number } from 'prop-types';
 
-export default class User extends Component {
+interface IUser {}
+
+class User extends Component {
   public render() {
     return (
       <div>
-        <p>User 1</p>
+        <p>User id:1</p>
       </div>
     );
   }
 }
 
 export const USER = gql`
-  query User {
-    user(id: 1) {
+  query User($id: Int!) {
+    user(id: $id) {
       name
     }
   }
 `;
+
+export default User;
