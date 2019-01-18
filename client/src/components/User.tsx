@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import gql from 'graphql-tag';
 import MyQuery from './MyQuery';
-import aaa from './fragment';
+import aaa from './aaa';
 
 class User extends Component {
   public render() {
@@ -14,18 +14,12 @@ class User extends Component {
   }
 }
 
-const bbb = gql`
-  fragment ARTS444 on Article {
-    createdAt
-  }
-`;
-
 export const UserQuery = gql`
   query User($id: Int!) {
     user(id: $id) {
       name
       articles {
-        ...ARTS
+        ...aaa
       }
     }
   }
