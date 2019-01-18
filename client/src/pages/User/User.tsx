@@ -9,7 +9,7 @@ class User extends Component {
   public render() {
     return (
       <div>
-        <p>User id:1</p>
+        <p>User id:</p>
       </div>
     );
   }
