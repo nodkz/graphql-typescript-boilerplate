@@ -1,0 +1,14 @@
+# See https://graphql-code-generator.com/docs/plugins/
+
+overwrite: true
+schema: ../server/src/schema/__generated__/schema.graphql
+documents: src/pages/**/*.tsx
+generates:
+  src/__generated__/components.tsx:
+    config:
+      noNamespaces: true
+    plugins:
+      - "typescript-common"
+      - "typescript-client"
+      - "typescript-react-apollo"
+      # - "fragment-matcher"

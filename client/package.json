@@ -11,6 +11,7 @@
     "apollo-client": "^2.4.8",
     "apollo-link-error": "^1.1.5",
     "apollo-link-http": "^1.5.9",
+    "graphql-codegen-typescript-react-apollo": "^0.15.2",
     "graphql-tag": "^2.10.1",
     "history": "^4.7.2",
     "react": "^16.7.0",
@@ -26,7 +27,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "gql-gen": "gql-gen --config codegen.yml"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -40,6 +42,11 @@
   "devDependencies": {
     "@types/history": "^4.7.2",
     "@types/react-router": "^4.4.3",
-    "@types/react-router-dom": "^4.3.1"
+    "@types/react-router-dom": "^4.3.1",
+    "graphql-code-generator": "^0.15.2",
+    "graphql-codegen-typescript-client": "0.15.2",
+    "graphql-codegen-typescript-common": "0.15.2",
+    "graphql-codegen-typescript-react-apollo": "0.15.2",
+    "graphql-codegen-fragment-matcher": "0.15.2"
   }
 }

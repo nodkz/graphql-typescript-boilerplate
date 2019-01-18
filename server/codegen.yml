@@ -1,7 +1,6 @@
 # See https://graphql-code-generator.com/docs/plugins/
 
 overwrite: true
-#schema: "http://localhost:4000"
 schema: src/**/*.gql
 documents: null
 generates:

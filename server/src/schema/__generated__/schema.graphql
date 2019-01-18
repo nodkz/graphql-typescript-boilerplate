@@ -16,7 +16,7 @@ type Mutation {
 
 type Query {
   # A simple type for getting started!
-  hello: String
+  hello(arg: String = "dsd"): String
   user(id: Int!, err: String): User
 }
 
