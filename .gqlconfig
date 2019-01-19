@@ -1,14 +1,27 @@
 // see config options https://github.com/Mayank1791989/gql
 {
   schema: {
-    files: 'server/src/schema/__generated__/schema.graphql' // for Client query autosuggesting
-    // files: 'server/src/schema/**/*.gql' // for Server GoTo Definition
+    // For Client query autosuggesting
+    files: 'server/src/schema/__generated__/schema.graphql'
+    
+    // For Server: GoTo Definition + Type Checks
+    // files: 'server/src/schema/**/*.gql' 
   },
   query: {
     files: [
       {
-        match: 'client/src/*.tsx',
+        match: 'server/src/**/*.ts',
         parser: ['EmbeddedQueryParser', { startTag: 'gql`', endTag: '`' }],
+      },
+      {
+        match: 'client/src/**/*.tsx',
+        parser: ['EmbeddedQueryParser', { startTag: 'gql`', endTag: '`' }],
+        validate: {
+          extends: 'gql-rules-query',
+          rules: {
+            KnownFragmentNames: 'off'
+          }
+        }
       },
     ]
   }
