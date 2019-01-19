@@ -2,8 +2,7 @@
   "extends": [
     "tslint:latest",
     "tslint-plugin-prettier",
-    "tslint-config-prettier",
-    "tslint-plugin-graphql"
+    "tslint-config-prettier"
   ],
   "cliOptions": {
     "exclude": [
@@ -21,14 +20,6 @@
       "trailingComma": "es5",
       "singleQuote": true
     }],
-    "graphql": [
-      true,
-      {
-        "env": "apollo",
-        "tagName": "gql",
-        "schemaJsonFilepath": "./server/src/schema/__generated__/schema.graphql.json"
-      }
-    ],
     "max-classes-per-file": false,
     "ban": false,
     "class-name": true,

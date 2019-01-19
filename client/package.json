@@ -22,6 +22,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "lint-graphql": "eslint -c .eslintrc-graphql --ext ts --ext tsx src/",
     "clear-generated": "find . -name \"__generated__\" -exec rm -rf '{}' +",
     "apollo-gen": "apollo client:codegen --target=typescript --localSchemaFile=../server/src/schema/__generated__/schema.graphql --includes=./src/**/*.{ts,tsx} --tagName gql",
     "watch": "npm run clear-generated && concurrently -k -p \"[{name}]\" -n \"CRA,ApolloGen\" -c \"blue.bold,cyan.bold\" \"npm run start \" \"npm run apollo-gen -- --watch\"",
@@ -52,6 +53,7 @@
     "graphql-codegen-typescript-common": "^0.15.2",
     "graphql-codegen-typescript-react-apollo": "^0.15.2",
     "mkdirp": "^0.5.1",
-    "typescript": "3.2.2"
+    "typescript": "3.2.2",
+    "typescript-eslint-parser": "^22.0.0"
   }
 }

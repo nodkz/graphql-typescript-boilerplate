@@ -17,7 +17,7 @@ class User extends Component {
 export const UserQuery = gql`
   query User($id: Int!) {
     user(id: $id) {
-      name
+      name123456
       articles {
         ...aaa
       }
