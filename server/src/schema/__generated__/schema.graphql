@@ -20,7 +20,7 @@ type Mutation {
 type Query {
   # A simple type for getting started!
   hello(arg: String = "dsd"): String
-  user(id: Int!, err: String): User
+  user(id: Int!, err: String): User!
 }
 
 type User {

@@ -2,8 +2,12 @@ import React, { Component } from 'react';
 import gql from 'graphql-tag';
 import MyQuery from './MyQuery';
 import ArticlePage from './ArticlePage';
+import { User_user } from './__generated__/User';
 
-class User extends Component {
+interface UserProps {
+  data: User_user;
+}
+class User extends Component<UserProps> {
   public render() {
     return (
       <div>
@@ -18,6 +22,16 @@ export const UserQuery = gql`
   query User($id: Int!) {
     user(id: $id) {
       name
+      friends {
+        friends {
+          friends {
+            friends {
+              name
+              ip
+            }
+          }
+        }
+      }
       articles {
         ...ArticlePageArticle
       }

@@ -6,5 +6,5 @@ type User {
 }
 
 extend type Query {
-  user(id: Int!, err: String): User
+  user(id: Int!, err: String): User!
 }

@@ -8,7 +8,7 @@ export interface Query {
   /** A simple type for getting started! */
   hello?: Maybe<string>;
 
-  user?: Maybe<User>;
+  user: User;
 }
 
 export interface User {
@@ -117,7 +117,7 @@ export namespace QueryResolvers {
     /** A simple type for getting started! */
     hello?: HelloResolver<Maybe<string>, TypeParent, Context>;
 
-    user?: UserResolver<Maybe<User>, TypeParent, Context>;
+    user?: UserResolver<User, TypeParent, Context>;
   }
 
   export type HelloResolver<
@@ -130,7 +130,7 @@ export namespace QueryResolvers {
   }
 
   export type UserResolver<
-    R = Maybe<User>,
+    R = User,
     Parent = {},
     Context = GraphQLContext
   > = Resolver<R, Parent, Context, UserArgs>;
@@ -325,7 +325,7 @@ type Mutation {
 type Query {
   # A simple type for getting started!
   hello(arg: String = "dsd"): String
-  user(id: Int!, err: String): User
+  user(id: Int!, err: String): User!
 }
 
 type User {
