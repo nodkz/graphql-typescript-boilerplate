@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import gql from 'graphql-tag';
 import MyQuery from './MyQuery';
-import aaa from './aaa';
+import ArticlePage from './ArticlePage';
 
 class User extends Component {
   public render() {
@@ -19,12 +19,11 @@ export const UserQuery = gql`
     user(id: $id) {
       name
       articles {
-        ...aaa
+        ...ArticlePageArticle
       }
     }
   }
-
-  ${aaa}
+  ${ArticlePage.fragments.article}
 `;
 
 export default () => <MyQuery component={User} query={UserQuery} variables={{ id: 123 }} />;
