@@ -10,7 +10,7 @@ describe('test query', () => {
     const res = await graphql({
       schema,
       source: gql`
-        query {
+        query Hello {
           hello
         }
       `,
@@ -23,10 +23,13 @@ describe('test query', () => {
     const res = await graphql({
       schema,
       source: gql`
-        query($id: Int!) {
+        query Name($id: Int!) {
           user(id: $id) {
             name
             ip
+            articles {
+              title
+            }
           }
         }
       `,

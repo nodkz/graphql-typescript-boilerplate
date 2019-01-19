@@ -9,7 +9,11 @@ const resolvers: IResolvers = {
   },
   Query: {
     user: (_, args) => {
-      return { name: `User${args.id}`, ip: '', articles: [{ title: 'a' }, { title: 'b' }] };
+      return {
+        name: `User${args.id}`,
+        ip: '',
+        articles: [{ title: 'a' }, { title: 'b' }],
+      };
     },
   },
 };
