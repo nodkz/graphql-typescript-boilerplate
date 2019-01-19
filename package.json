@@ -47,7 +47,7 @@
     ],
     "*.{ts,tsx}": [
       "tslint --fix",
-      "cd client && eslint -c .eslintrc-graphql",
+      "eslint -c .eslintrc-graphql --no-eslintrc",
       "git add"
     ],
     "*.graphql": [
