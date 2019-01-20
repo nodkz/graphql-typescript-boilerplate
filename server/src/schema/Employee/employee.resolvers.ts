@@ -8,6 +8,8 @@ const employeesData = chain(
   })
 );
 
+export { employeesData };
+
 const resolvers: IResolvers = {
   Query: {
     employee: (_, args) => {

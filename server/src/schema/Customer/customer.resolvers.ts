@@ -8,6 +8,8 @@ let customersData = chain(
   })
 );
 
+export { customersData };
+
 const resolvers: IResolvers = {
   Query: {
     customer: (_, args) => {

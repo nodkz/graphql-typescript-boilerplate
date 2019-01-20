@@ -30,6 +30,28 @@ export interface EmployeeFilterInput {
   address?: Maybe<AddressInput>;
 }
 
+export interface OrderFilterInput {
+  orderID?: Maybe<number>;
+
+  customerID?: Maybe<string>;
+
+  employeeID?: Maybe<number>;
+
+  orderDate?: Maybe<Date>;
+
+  requiredDate?: Maybe<Date>;
+
+  shippedDate?: Maybe<Date>;
+
+  shipVia?: Maybe<number>;
+
+  freight?: Maybe<number>;
+
+  shipName?: Maybe<string>;
+
+  shipAddress?: Maybe<AddressInput>;
+}
+
 export interface ProductFilterInput {
   productID?: Maybe<number>;
 
@@ -83,6 +105,10 @@ export interface Query {
 
   employees: (Maybe<Employee>)[];
 
+  order?: Maybe<Order>;
+
+  orders: (Maybe<Order>)[];
+
   product?: Maybe<Product>;
 
   products: (Maybe<Product>)[];
@@ -97,7 +123,7 @@ export interface Customer {
 
   customerID: string;
 
-  companyName: string;
+  companyName?: Maybe<string>;
 
   contactName?: Maybe<string>;
 
@@ -150,6 +176,46 @@ export interface Employee {
   subordinates: (Maybe<Employee>)[];
 
   territoryID: (Maybe<number>)[];
+}
+
+export interface Order {
+  orderID?: Maybe<number>;
+
+  customerID?: Maybe<string>;
+
+  customer?: Maybe<Customer>;
+
+  employeeID?: Maybe<number>;
+
+  employee?: Maybe<Employee>;
+
+  orderDate?: Maybe<Date>;
+
+  requiredDate?: Maybe<Date>;
+
+  shippedDate?: Maybe<Date>;
+
+  shipVia?: Maybe<number>;
+
+  freight?: Maybe<number>;
+
+  shipName?: Maybe<string>;
+
+  shipAddress?: Maybe<Address>;
+
+  details: (Maybe<OrderDetails>)[];
+}
+
+export interface OrderDetails {
+  productID?: Maybe<number>;
+
+  product?: Maybe<Product>;
+
+  unitPrice?: Maybe<number>;
+
+  quantity?: Maybe<number>;
+
+  discount?: Maybe<number>;
 }
 
 export interface Product {
@@ -245,6 +311,16 @@ export interface EmployeesQueryArgs {
 
   offset?: Maybe<number>;
 }
+export interface OrderQueryArgs {
+  id: string;
+}
+export interface OrdersQueryArgs {
+  filter?: Maybe<OrderFilterInput>;
+
+  limit: number;
+
+  offset?: Maybe<number>;
+}
 export interface ProductQueryArgs {
   id: string;
 }
@@ -334,6 +410,10 @@ export namespace QueryResolvers {
 
     employees?: EmployeesResolver<(Maybe<Employee>)[], TypeParent, Context>;
 
+    order?: OrderResolver<Maybe<Order>, TypeParent, Context>;
+
+    orders?: OrdersResolver<(Maybe<Order>)[], TypeParent, Context>;
+
     product?: ProductResolver<Maybe<Product>, TypeParent, Context>;
 
     products?: ProductsResolver<(Maybe<Product>)[], TypeParent, Context>;
@@ -381,6 +461,28 @@ export namespace QueryResolvers {
   > = Resolver<R, Parent, Context, EmployeesArgs>;
   export interface EmployeesArgs {
     filter?: Maybe<EmployeeFilterInput>;
+
+    limit: number;
+
+    offset?: Maybe<number>;
+  }
+
+  export type OrderResolver<
+    R = Maybe<Order>,
+    Parent = {},
+    Context = GraphQLContext
+  > = Resolver<R, Parent, Context, OrderArgs>;
+  export interface OrderArgs {
+    id: string;
+  }
+
+  export type OrdersResolver<
+    R = (Maybe<Order>)[],
+    Parent = {},
+    Context = GraphQLContext
+  > = Resolver<R, Parent, Context, OrdersArgs>;
+  export interface OrdersArgs {
+    filter?: Maybe<OrderFilterInput>;
 
     limit: number;
 
@@ -436,7 +538,7 @@ export namespace CustomerResolvers {
 
     customerID?: CustomerIdResolver<string, TypeParent, Context>;
 
-    companyName?: CompanyNameResolver<string, TypeParent, Context>;
+    companyName?: CompanyNameResolver<Maybe<string>, TypeParent, Context>;
 
     contactName?: ContactNameResolver<Maybe<string>, TypeParent, Context>;
 
@@ -456,7 +558,7 @@ export namespace CustomerResolvers {
     Context = GraphQLContext
   > = Resolver<R, Parent, Context>;
   export type CompanyNameResolver<
-    R = string,
+    R = Maybe<string>,
     Parent = Customer,
     Context = GraphQLContext
   > = Resolver<R, Parent, Context>;
@@ -638,6 +740,145 @@ export namespace EmployeeResolvers {
   export type TerritoryIdResolver<
     R = (Maybe<number>)[],
     Parent = Employee,
+    Context = GraphQLContext
+  > = Resolver<R, Parent, Context>;
+}
+
+export namespace OrderResolvers {
+  export interface Resolvers<Context = GraphQLContext, TypeParent = Order> {
+    orderID?: OrderIdResolver<Maybe<number>, TypeParent, Context>;
+
+    customerID?: CustomerIdResolver<Maybe<string>, TypeParent, Context>;
+
+    customer?: CustomerResolver<Maybe<Customer>, TypeParent, Context>;
+
+    employeeID?: EmployeeIdResolver<Maybe<number>, TypeParent, Context>;
+
+    employee?: EmployeeResolver<Maybe<Employee>, TypeParent, Context>;
+
+    orderDate?: OrderDateResolver<Maybe<Date>, TypeParent, Context>;
+
+    requiredDate?: RequiredDateResolver<Maybe<Date>, TypeParent, Context>;
+
+    shippedDate?: ShippedDateResolver<Maybe<Date>, TypeParent, Context>;
+
+    shipVia?: ShipViaResolver<Maybe<number>, TypeParent, Context>;
+
+    freight?: FreightResolver<Maybe<number>, TypeParent, Context>;
+
+    shipName?: ShipNameResolver<Maybe<string>, TypeParent, Context>;
+
+    shipAddress?: ShipAddressResolver<Maybe<Address>, TypeParent, Context>;
+
+    details?: DetailsResolver<(Maybe<OrderDetails>)[], TypeParent, Context>;
+  }
+
+  export type OrderIdResolver<
+    R = Maybe<number>,
+    Parent = Order,
+    Context = GraphQLContext
+  > = Resolver<R, Parent, Context>;
+  export type CustomerIdResolver<
+    R = Maybe<string>,
+    Parent = Order,
+    Context = GraphQLContext
+  > = Resolver<R, Parent, Context>;
+  export type CustomerResolver<
+    R = Maybe<Customer>,
+    Parent = Order,
+    Context = GraphQLContext
+  > = Resolver<R, Parent, Context>;
+  export type EmployeeIdResolver<
+    R = Maybe<number>,
+    Parent = Order,
+    Context = GraphQLContext
+  > = Resolver<R, Parent, Context>;
+  export type EmployeeResolver<
+    R = Maybe<Employee>,
+    Parent = Order,
+    Context = GraphQLContext
+  > = Resolver<R, Parent, Context>;
+  export type OrderDateResolver<
+    R = Maybe<Date>,
+    Parent = Order,
+    Context = GraphQLContext
+  > = Resolver<R, Parent, Context>;
+  export type RequiredDateResolver<
+    R = Maybe<Date>,
+    Parent = Order,
+    Context = GraphQLContext
+  > = Resolver<R, Parent, Context>;
+  export type ShippedDateResolver<
+    R = Maybe<Date>,
+    Parent = Order,
+    Context = GraphQLContext
+  > = Resolver<R, Parent, Context>;
+  export type ShipViaResolver<
+    R = Maybe<number>,
+    Parent = Order,
+    Context = GraphQLContext
+  > = Resolver<R, Parent, Context>;
+  export type FreightResolver<
+    R = Maybe<number>,
+    Parent = Order,
+    Context = GraphQLContext
+  > = Resolver<R, Parent, Context>;
+  export type ShipNameResolver<
+    R = Maybe<string>,
+    Parent = Order,
+    Context = GraphQLContext
+  > = Resolver<R, Parent, Context>;
+  export type ShipAddressResolver<
+    R = Maybe<Address>,
+    Parent = Order,
+    Context = GraphQLContext
+  > = Resolver<R, Parent, Context>;
+  export type DetailsResolver<
+    R = (Maybe<OrderDetails>)[],
+    Parent = Order,
+    Context = GraphQLContext
+  > = Resolver<R, Parent, Context>;
+}
+
+export namespace OrderDetailsResolvers {
+  export interface Resolvers<
+    Context = GraphQLContext,
+    TypeParent = OrderDetails
+  > {
+    productID?: ProductIdResolver<Maybe<number>, TypeParent, Context>;
+
+    product?: ProductResolver<Maybe<Product>, TypeParent, Context>;
+
+    unitPrice?: UnitPriceResolver<Maybe<number>, TypeParent, Context>;
+
+    quantity?: QuantityResolver<Maybe<number>, TypeParent, Context>;
+
+    discount?: DiscountResolver<Maybe<number>, TypeParent, Context>;
+  }
+
+  export type ProductIdResolver<
+    R = Maybe<number>,
+    Parent = OrderDetails,
+    Context = GraphQLContext
+  > = Resolver<R, Parent, Context>;
+  export type ProductResolver<
+    R = Maybe<Product>,
+    Parent = OrderDetails,
+    Context = GraphQLContext
+  > = Resolver<R, Parent, Context>;
+  export type UnitPriceResolver<
+    R = Maybe<number>,
+    Parent = OrderDetails,
+    Context = GraphQLContext
+  > = Resolver<R, Parent, Context>;
+  export type QuantityResolver<
+    R = Maybe<number>,
+    Parent = OrderDetails,
+    Context = GraphQLContext
+  > = Resolver<R, Parent, Context>;
+  export type DiscountResolver<
+    R = Maybe<number>,
+    Parent = OrderDetails,
     Context = GraphQLContext
   > = Resolver<R, Parent, Context>;
 }
@@ -925,6 +1166,8 @@ export interface IResolvers {
   Customer?: CustomerResolvers.Resolvers;
   Address?: AddressResolvers.Resolvers;
   Employee?: EmployeeResolvers.Resolvers;
+  Order?: OrderResolvers.Resolvers;
+  OrderDetails?: OrderDetailsResolvers.Resolvers;
   Product?: ProductResolvers.Resolvers;
   User?: UserResolvers.Resolvers;
   Article?: ArticleResolvers.Resolvers;
@@ -976,7 +1219,7 @@ type ArticleMutations {
 type Customer {
   _id: ID!
   customerID: String!
-  companyName: String!
+  companyName: String
   contactName: String
   contactTitle: String
   address: Address
@@ -1036,6 +1279,43 @@ type Mutation {
   log: String
 }
 
+type Order {
+  orderID: Int
+  customerID: String
+  customer: Customer
+  employeeID: Int
+  employee: Employee
+  orderDate: Date
+  requiredDate: Date
+  shippedDate: Date
+  shipVia: Int
+  freight: Float
+  shipName: String
+  shipAddress: Address
+  details: [OrderDetails]!
+}
+
+type OrderDetails {
+  productID: Int
+  product: Product
+  unitPrice: Float
+  quantity: Int
+  discount: Float
+}
+
+input OrderFilterInput {
+  orderID: Int
+  customerID: String
+  employeeID: Int
+  orderDate: Date
+  requiredDate: Date
+  shippedDate: Date
+  shipVia: Int
+  freight: Float
+  shipName: String
+  shipAddress: AddressInput
+}
+
 type Product {
   _id: ID!
   productID: Int!
@@ -1068,6 +1348,8 @@ type Query {
   customers(filter: CustomerFilterInput, limit: Int! = 20, offset: Int): [Customer]!
   employee(id: ID!): Employee
   employees(filter: EmployeeFilterInput, limit: Int! = 20, offset: Int): [Employee]!
+  order(id: ID!): Order
+  orders(filter: OrderFilterInput, limit: Int! = 20, offset: Int): [Order]!
   product(id: ID!): Product
   products(filter: ProductFilterInput, limit: Int! = 20, offset: Int): [Product]!
 

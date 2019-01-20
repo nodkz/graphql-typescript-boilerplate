@@ -1,7 +1,7 @@
 type Customer {
   _id: ID!
   customerID: String!
-  companyName: String!
+  companyName: String
   contactName: String
   contactTitle: String
   address: Address

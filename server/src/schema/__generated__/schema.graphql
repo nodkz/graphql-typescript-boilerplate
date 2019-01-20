@@ -33,7 +33,7 @@ type ArticleMutations {
 type Customer {
   _id: ID!
   customerID: String!
-  companyName: String!
+  companyName: String
   contactName: String
   contactTitle: String
   address: Address
@@ -93,6 +93,43 @@ type Mutation {
   log: String
 }
 
+type Order {
+  orderID: Int
+  customerID: String
+  customer: Customer
+  employeeID: Int
+  employee: Employee
+  orderDate: Date
+  requiredDate: Date
+  shippedDate: Date
+  shipVia: Int
+  freight: Float
+  shipName: String
+  shipAddress: Address
+  details: [OrderDetails]!
+}
+
+type OrderDetails {
+  productID: Int
+  product: Product
+  unitPrice: Float
+  quantity: Int
+  discount: Float
+}
+
+input OrderFilterInput {
+  orderID: Int
+  customerID: String
+  employeeID: Int
+  orderDate: Date
+  requiredDate: Date
+  shippedDate: Date
+  shipVia: Int
+  freight: Float
+  shipName: String
+  shipAddress: AddressInput
+}
+
 type Product {
   _id: ID!
   productID: Int!
@@ -133,6 +170,8 @@ type Query {
     limit: Int! = 20
     offset: Int
   ): [Employee]!
+  order(id: ID!): Order
+  orders(filter: OrderFilterInput, limit: Int! = 20, offset: Int): [Order]!
   product(id: ID!): Product
   products(
     filter: ProductFilterInput

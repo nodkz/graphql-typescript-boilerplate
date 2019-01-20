@@ -142,6 +142,68 @@
             "deprecationReason": null
           },
           {
+            "name": "order",
+            "description": "",
+            "args": [
+              {
+                "name": "id",
+                "description": "",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": { "kind": "SCALAR", "name": "ID", "ofType": null }
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": { "kind": "OBJECT", "name": "Order", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "orders",
+            "description": "",
+            "args": [
+              {
+                "name": "filter",
+                "description": "",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "OrderFilterInput",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "limit",
+                "description": "",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": { "kind": "SCALAR", "name": "Int", "ofType": null }
+                },
+                "defaultValue": "20"
+              },
+              {
+                "name": "offset",
+                "description": "",
+                "type": { "kind": "SCALAR", "name": "Int", "ofType": null },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": { "kind": "OBJECT", "name": "Order", "ofType": null }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "product",
             "description": "",
             "args": [
@@ -300,11 +362,7 @@
             "name": "companyName",
             "description": "",
             "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": { "kind": "SCALAR", "name": "String", "ofType": null }
-            },
+            "type": { "kind": "SCALAR", "name": "String", "ofType": null },
             "isDeprecated": false,
             "deprecationReason": null
           },
@@ -701,6 +759,194 @@
       },
       {
         "kind": "OBJECT",
+        "name": "Order",
+        "description": "",
+        "fields": [
+          {
+            "name": "orderID",
+            "description": "",
+            "args": [],
+            "type": { "kind": "SCALAR", "name": "Int", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "customerID",
+            "description": "",
+            "args": [],
+            "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "customer",
+            "description": "",
+            "args": [],
+            "type": { "kind": "OBJECT", "name": "Customer", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "employeeID",
+            "description": "",
+            "args": [],
+            "type": { "kind": "SCALAR", "name": "Int", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "employee",
+            "description": "",
+            "args": [],
+            "type": { "kind": "OBJECT", "name": "Employee", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "orderDate",
+            "description": "",
+            "args": [],
+            "type": { "kind": "SCALAR", "name": "Date", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "requiredDate",
+            "description": "",
+            "args": [],
+            "type": { "kind": "SCALAR", "name": "Date", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "shippedDate",
+            "description": "",
+            "args": [],
+            "type": { "kind": "SCALAR", "name": "Date", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "shipVia",
+            "description": "",
+            "args": [],
+            "type": { "kind": "SCALAR", "name": "Int", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "freight",
+            "description": "",
+            "args": [],
+            "type": { "kind": "SCALAR", "name": "Float", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "shipName",
+            "description": "",
+            "args": [],
+            "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "shipAddress",
+            "description": "",
+            "args": [],
+            "type": { "kind": "OBJECT", "name": "Address", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "details",
+            "description": "",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "OrderDetails",
+                  "ofType": null
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "SCALAR",
+        "name": "Float",
+        "description": "The `Float` scalar type represents signed double-precision fractional values as specified by [IEEE 754](http://en.wikipedia.org/wiki/IEEE_floating_point). ",
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "OrderDetails",
+        "description": "",
+        "fields": [
+          {
+            "name": "productID",
+            "description": "",
+            "args": [],
+            "type": { "kind": "SCALAR", "name": "Int", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "product",
+            "description": "",
+            "args": [],
+            "type": { "kind": "OBJECT", "name": "Product", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "unitPrice",
+            "description": "",
+            "args": [],
+            "type": { "kind": "SCALAR", "name": "Float", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "quantity",
+            "description": "",
+            "args": [],
+            "type": { "kind": "SCALAR", "name": "Int", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "discount",
+            "description": "",
+            "args": [],
+            "type": { "kind": "SCALAR", "name": "Float", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
         "name": "Product",
         "description": "",
         "fields": [
@@ -808,8 +1054,8 @@
       },
       {
         "kind": "SCALAR",
-        "name": "Float",
-        "description": "The `Float` scalar type represents signed double-precision fractional values as specified by [IEEE 754](http://en.wikipedia.org/wiki/IEEE_floating_point). ",
+        "name": "Boolean",
+        "description": "The `Boolean` scalar type represents `true` or `false`.",
         "fields": null,
         "inputFields": null,
         "interfaces": null,
@@ -817,11 +1063,76 @@
         "possibleTypes": null
       },
       {
-        "kind": "SCALAR",
-        "name": "Boolean",
-        "description": "The `Boolean` scalar type represents `true` or `false`.",
+        "kind": "INPUT_OBJECT",
+        "name": "OrderFilterInput",
+        "description": "",
         "fields": null,
-        "inputFields": null,
+        "inputFields": [
+          {
+            "name": "orderID",
+            "description": "",
+            "type": { "kind": "SCALAR", "name": "Int", "ofType": null },
+            "defaultValue": null
+          },
+          {
+            "name": "customerID",
+            "description": "",
+            "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+            "defaultValue": null
+          },
+          {
+            "name": "employeeID",
+            "description": "",
+            "type": { "kind": "SCALAR", "name": "Int", "ofType": null },
+            "defaultValue": null
+          },
+          {
+            "name": "orderDate",
+            "description": "",
+            "type": { "kind": "SCALAR", "name": "Date", "ofType": null },
+            "defaultValue": null
+          },
+          {
+            "name": "requiredDate",
+            "description": "",
+            "type": { "kind": "SCALAR", "name": "Date", "ofType": null },
+            "defaultValue": null
+          },
+          {
+            "name": "shippedDate",
+            "description": "",
+            "type": { "kind": "SCALAR", "name": "Date", "ofType": null },
+            "defaultValue": null
+          },
+          {
+            "name": "shipVia",
+            "description": "",
+            "type": { "kind": "SCALAR", "name": "Int", "ofType": null },
+            "defaultValue": null
+          },
+          {
+            "name": "freight",
+            "description": "",
+            "type": { "kind": "SCALAR", "name": "Float", "ofType": null },
+            "defaultValue": null
+          },
+          {
+            "name": "shipName",
+            "description": "",
+            "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+            "defaultValue": null
+          },
+          {
+            "name": "shipAddress",
+            "description": "",
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "AddressInput",
+              "ofType": null
+            },
+            "defaultValue": null
+          }
+        ],
         "interfaces": null,
         "enumValues": null,
         "possibleTypes": null

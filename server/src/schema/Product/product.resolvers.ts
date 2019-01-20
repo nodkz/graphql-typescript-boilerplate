@@ -8,6 +8,8 @@ const productsData = chain(
   })
 );
 
+export { productsData };
+
 const resolvers: IResolvers = {
   Query: {
     product: (_, args) => {
