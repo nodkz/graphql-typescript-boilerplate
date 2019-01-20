@@ -1,0 +1,31 @@
+type Product {
+  _id: ID!
+  productID: Int!
+  name: String
+  supplierID: Int
+  categoryID: Int
+  quantityPerUnit: String
+  unitPrice: Float
+  unitsInStock: Int
+  unitsOnOrder: Int
+  reorderLevel: Int
+  discontinued: Boolean
+}
+
+extend type Query {
+  product(id: ID!): Product
+  products(filter: ProductFilterInput, limit: Int! = 20, offset: Int): [Product]!
+}
+
+input ProductFilterInput {
+  productID: Int
+  productName: String
+  supplierID: Int
+  categoryID: Int
+  quantityPerUnit: String
+  unitPrice: Float
+  unitsInStock: Int
+  unitsOnOrder: Int
+  reorderLevel: Int
+  discontinued: Boolean
+}

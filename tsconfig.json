@@ -19,7 +19,11 @@
     "noImplicitReturns": true,
     "noImplicitThis": true,
     "strictBindCallApply": true,
-    "strictNullChecks": true
+    "strictNullChecks": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "typeRoots" : ["./typings"],
+    "types": ["jest"]
   },
   "include": [
     "**/typings.d.ts",
@@ -27,6 +31,7 @@
     "**/*.tsx"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "client"
   ]
 }

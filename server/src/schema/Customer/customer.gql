@@ -1,0 +1,38 @@
+type Customer {
+  _id: ID!
+  customerID: String!
+  companyName: String!
+  contactName: String
+  contactTitle: String
+  address: Address
+}
+
+extend type Query {
+  customer(id: ID!): Customer
+  customers(filter: CustomerFilterInput, limit: Int! = 20, offset: Int): [Customer]!
+}
+
+input CustomerFilterInput {
+  companyName: String
+  address: AddressInput
+}
+
+extend type Mutation {
+  customer: CustomerMutations
+}
+
+type CustomerMutations {
+  create(input: CustomerInput!): CustomerCreatePayload
+}
+
+input CustomerInput {
+  customerID: String!
+  companyName: String!
+  contactName: String
+  contactTitle: String
+  address: AddressInput
+}
+
+type CustomerCreatePayload {
+  record: Customer
+}

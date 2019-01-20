@@ -1,3 +1,21 @@
+type Address {
+  street: String
+  city: String
+  region: String
+  postalCode: String
+  country: String
+  phone: String
+}
+
+input AddressInput {
+  street: String
+  city: String
+  region: String
+  postalCode: String
+  country: String
+  phone: String
+}
+
 type Article {
   # `aaa` | `ok` \\\
   title: String!
@@ -12,12 +30,116 @@ type ArticleMutations {
   remove: Float
 }
 
+type Customer {
+  _id: ID!
+  customerID: String!
+  companyName: String!
+  contactName: String
+  contactTitle: String
+  address: Address
+}
+
+type CustomerCreatePayload {
+  record: Customer
+}
+
+input CustomerFilterInput {
+  companyName: String
+  address: AddressInput
+}
+
+input CustomerInput {
+  customerID: String!
+  companyName: String!
+  contactName: String
+  contactTitle: String
+  address: AddressInput
+}
+
+type CustomerMutations {
+  create(input: CustomerInput!): CustomerCreatePayload
+}
+
+scalar Date
+
+type Employee {
+  _id: ID!
+  employeeID: Int!
+  lastName: String
+  firstName: String
+  title: String
+  titleOfCourtesy: String
+  birthDate: Date
+  hireDate: Date
+  address: Address
+  phone: String
+  notes: String
+  reportsTo: Employee
+  reportsID: Int
+  subordinates: [Employee]!
+  territoryID: [Int]!
+}
+
+input EmployeeFilterInput {
+  title: String
+  lastName: String
+  reportsTo: Int
+  address: AddressInput
+}
+
 type Mutation {
   article: ArticleMutations
+  customer: CustomerMutations
   log: String
 }
 
+type Product {
+  _id: ID!
+  productID: Int!
+  name: String
+  supplierID: Int
+  categoryID: Int
+  quantityPerUnit: String
+  unitPrice: Float
+  unitsInStock: Int
+  unitsOnOrder: Int
+  reorderLevel: Int
+  discontinued: Boolean
+}
+
+input ProductFilterInput {
+  productID: Int
+  productName: String
+  supplierID: Int
+  categoryID: Int
+  quantityPerUnit: String
+  unitPrice: Float
+  unitsInStock: Int
+  unitsOnOrder: Int
+  reorderLevel: Int
+  discontinued: Boolean
+}
+
 type Query {
+  customer(id: ID!): Customer
+  customers(
+    filter: CustomerFilterInput
+    limit: Int! = 20
+    offset: Int
+  ): [Customer]!
+  employee(id: ID!): Employee
+  employees(
+    filter: EmployeeFilterInput
+    limit: Int! = 20
+    offset: Int
+  ): [Employee]!
+  product(id: ID!): Product
+  products(
+    filter: ProductFilterInput
+    limit: Int! = 20
+    offset: Int
+  ): [Product]!
+
   # A simple type for getting started!
   hello(arg: String = "dsd"): String
   user(id: Int!, err: String): User!

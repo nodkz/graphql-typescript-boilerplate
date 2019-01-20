@@ -11,6 +11,7 @@
   "devDependencies": {
     "@playlyfe/gql": "^2.6.1",
     "@types/jest": "^23.3.12",
+    "@types/lodash": "^4.14.120",
     "apollo": "^2.3.0",
     "babel-eslint": "9.0.0",
     "concurrently": "^4.1.0",

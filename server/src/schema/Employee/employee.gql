@@ -1,0 +1,29 @@
+type Employee {
+  _id: ID!
+  employeeID: Int!
+  lastName: String
+  firstName: String
+  title: String
+  titleOfCourtesy: String
+  birthDate: Date
+  hireDate: Date
+  address: Address
+  phone: String
+  notes: String
+  reportsTo: Employee
+  reportsID: Int
+  subordinates: [Employee]!
+  territoryID: [Int]!
+}
+
+extend type Query {
+  employee(id: ID!): Employee
+  employees(filter: EmployeeFilterInput, limit: Int! = 20, offset: Int): [Employee]!
+}
+
+input EmployeeFilterInput {
+  title: String
+  lastName: String
+  reportsTo: Int
+  address: AddressInput
+}
