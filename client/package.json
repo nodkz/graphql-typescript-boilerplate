@@ -28,10 +28,10 @@
     "eject": "react-scripts eject",
     "lint-graphql": "cd ../ && eslint -c .eslintrc-graphql --no-eslintrc --ext ts --ext tsx client/src/",
     "clear": "find . -name \"__generated__\" -exec rm -rf '{}' +",
-    "apollo-gen": "apollo client:codegen --target=typescript --localSchemaFile=../server/src/schema/__generated__/schema.graphql --includes=./src/**/*.{ts,tsx} --tagName gql",
-    "watch": "npm run clear && concurrently -k -p \"[{name}]\" -n \"CRA,ApolloGen\" -c \"blue.bold,cyan.bold\" \"npm run start\" \"npm run apollo-gen -- --watch\"",
-    "watch-gcg": "npm run gcg -- --watch",
-    "gcg": "gql-gen --config codegen.yml"
+    "apollo-codegen": "apollo client:codegen --target=typescript --localSchemaFile=../server/src/schema/__generated__/schema.graphql --includes=./src/**/*.{ts,tsx} --tagName gql",
+    "watch": "npm run clear && concurrently npm:watch-*",
+    "watch-app": "npm run start",
+    "watch-apollo-codegen": "npm run apollo-codegen -- --watch"
   },
   "eslintConfig": {
     "extends": "react-app"

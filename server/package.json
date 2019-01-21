@@ -2,21 +2,23 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "build-ts": "tsc",
-    "watch": "concurrently -k -p \"[{name}]\" -n \"TS,Nodemon,GCG\" -c \"green.bold,yellow.bold\" \"npm run watch-ts\" \"npm run watch-node\" \"npm run watch-gcg\"",
-    "watch-ts": "tsc -w",
-    "watch-node": "nodemon ./dist/index.js",
+    "watch": "yarn clear && concurrently npm:watch-*",
+    "watch-ts": "tsc --watch --preserveWatchOutput",
+    "watch-node": "nodemon --watch ./dist --delay 1",
     "watch-gcg": "npm run gcg -- --watch",
+    "gcg": "mkdirp ./src/schema/__generated__ && gql-gen --config codegen.yml",
+    "clear": "rm -rf dist || true && mkdir dist",
     "test": "jest",
-    "watch-test": "npm run test -- --watch",
-    "gcg": "mkdirp ./src/schema/__generated__ && gql-gen --config codegen.yml"
+    "test-watch": "npm run test -- --watch"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "apollo-server": "^2.3.1",
+    "dataloader": "^1.4.0",
     "graphql": "^14.0.2",
     "graphql-tag": "^2.10.0",
     "graphql-tools": "^4.0.3",
@@ -26,6 +28,7 @@
     "@types/express": "^4.16.0",
     "@types/graphql": "^14.0.4",
     "@types/jest": "^23.3.12",
+    "concurrently": "^4.1.0",
     "eslint": "^5.12.1",
     "graphql-code-generator": "^0.15.2",
     "graphql-codegen-add": "^0.15.2",
@@ -41,12 +44,5 @@
     "ts-node": "^7.0.1",
     "tslint": "^5.12.1",
     "typescript": "^3.2.2"
-  },
-  "nodemonConfig": {
-    "ignore": [
-      "src/__generated__/*",
-      "__generated__/*"
-    ],
-    "delay": "2500"
   }
 }

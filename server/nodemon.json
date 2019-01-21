@@ -1,4 +1,0 @@
-{
-  "ignore": ["__tests__/*", "graphql.schema.json"],
-  "ext": "js,json"
-}
