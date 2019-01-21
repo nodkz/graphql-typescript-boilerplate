@@ -1,0 +1,14 @@
+extend type Query {
+  me: Me
+}
+
+type Me {
+  user: User
+  userData: String
+  adminData: String
+}
+
+type User {
+  login: String
+  roles: [String]!
+}

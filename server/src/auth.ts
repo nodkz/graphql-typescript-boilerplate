@@ -2,13 +2,17 @@ import jwt from 'jsonwebtoken';
 import { find } from 'lodash';
 import { Request, Response } from 'express';
 
-interface User {
+export interface User {
   login: string;
   password: string;
+  roles: string[];
 }
 
 const JWT_SECRET_KEY = 'qwerty ;)';
-const users: User[] = [{ login: 'user', password: 'user' }, { login: 'admin', password: 'admin' }];
+const users: User[] = [
+  { login: 'user', password: 'user', roles: ['user'] },
+  { login: 'admin', password: 'admin', roles: ['admin', 'user'] },
+];
 
 export default class Auth {
   private static cookieName = 'token';

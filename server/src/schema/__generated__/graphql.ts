@@ -105,6 +105,8 @@ export interface Query {
 
   employees: (Maybe<Employee>)[];
 
+  me?: Maybe<Me>;
+
   order?: Maybe<Order>;
 
   orders: (Maybe<Order>)[];
@@ -174,6 +176,20 @@ export interface Employee {
   subordinates: (Maybe<Employee>)[];
 
   territoryID: (Maybe<number>)[];
+}
+
+export interface Me {
+  user?: Maybe<User>;
+
+  userData?: Maybe<string>;
+
+  adminData?: Maybe<string>;
+}
+
+export interface User {
+  login?: Maybe<string>;
+
+  roles: (Maybe<string>)[];
 }
 
 export interface Order {
@@ -384,6 +400,8 @@ export namespace QueryResolvers {
 
     employees?: EmployeesResolver<(Maybe<Employee>)[], TypeParent, Context>;
 
+    me?: MeResolver<Maybe<Me>, TypeParent, Context>;
+
     order?: OrderResolver<Maybe<Order>, TypeParent, Context>;
 
     orders?: OrdersResolver<(Maybe<Order>)[], TypeParent, Context>;
@@ -439,6 +457,11 @@ export namespace QueryResolvers {
     offset?: Maybe<number>;
   }
 
+  export type MeResolver<
+    R = Maybe<Me>,
+    Parent = {},
+    Context = GraphQLContext
+  > = Resolver<R, Parent, Context>;
   export type OrderResolver<
     R = Maybe<Order>,
     Parent = {},
@@ -698,6 +721,51 @@ export namespace EmployeeResolvers {
   export type TerritoryIdResolver<
     R = (Maybe<number>)[],
     Parent = Employee,
+    Context = GraphQLContext
+  > = Resolver<R, Parent, Context>;
+}
+
+export namespace MeResolvers {
+  export interface Resolvers<Context = GraphQLContext, TypeParent = Me> {
+    user?: UserResolver<Maybe<User>, TypeParent, Context>;
+
+    userData?: UserDataResolver<Maybe<string>, TypeParent, Context>;
+
+    adminData?: AdminDataResolver<Maybe<string>, TypeParent, Context>;
+  }
+
+  export type UserResolver<
+    R = Maybe<User>,
+    Parent = Me,
+    Context = GraphQLContext
+  > = Resolver<R, Parent, Context>;
+  export type UserDataResolver<
+    R = Maybe<string>,
+    Parent = Me,
+    Context = GraphQLContext
+  > = Resolver<R, Parent, Context>;
+  export type AdminDataResolver<
+    R = Maybe<string>,
+    Parent = Me,
+    Context = GraphQLContext
+  > = Resolver<R, Parent, Context>;
+}
+
+export namespace UserResolvers {
+  export interface Resolvers<Context = GraphQLContext, TypeParent = User> {
+    login?: LoginResolver<Maybe<string>, TypeParent, Context>;
+
+    roles?: RolesResolver<(Maybe<string>)[], TypeParent, Context>;
+  }
+
+  export type LoginResolver<
+    R = Maybe<string>,
+    Parent = User,
+    Context = GraphQLContext
+  > = Resolver<R, Parent, Context>;
+  export type RolesResolver<
+    R = (Maybe<string>)[],
+    Parent = User,
     Context = GraphQLContext
   > = Resolver<R, Parent, Context>;
 }
@@ -1063,6 +1131,8 @@ export interface IResolvers {
   Customer?: CustomerResolvers.Resolvers;
   Address?: AddressResolvers.Resolvers;
   Employee?: EmployeeResolvers.Resolvers;
+  Me?: MeResolvers.Resolvers;
+  User?: UserResolvers.Resolvers;
   Order?: OrderResolvers.Resolvers;
   OrderDetails?: OrderDetailsResolvers.Resolvers;
   Product?: ProductResolvers.Resolvers;
@@ -1159,6 +1229,12 @@ type LoginPayload {
   ok: Boolean!
 }
 
+type Me {
+  user: User
+  userData: String
+  adminData: String
+}
+
 type Mutation {
   login(login: String!, password: String!): LoginPayload
   logout: Boolean
@@ -1235,6 +1311,7 @@ type Query {
   customers(filter: CustomerFilterInput, limit: Int! = 20, offset: Int): [Customer]!
   employee(id: ID!): Employee
   employees(filter: EmployeeFilterInput, limit: Int! = 20, offset: Int): [Employee]!
+  me: Me
   order(id: ID!): Order
   orders(filter: OrderFilterInput, limit: Int! = 20, offset: Int): [Order]!
   product(id: ID!): Product
@@ -1242,6 +1319,11 @@ type Query {
 
   # A simple type for getting started!
   hello: String
+}
+
+type User {
+  login: String
+  roles: [String]!
 }
 
 `;

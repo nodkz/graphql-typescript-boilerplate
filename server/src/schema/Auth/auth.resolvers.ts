@@ -10,7 +10,11 @@ const resolvers: IResolvers = {
       }
       return { ok: false };
     },
-    logout: (_, __, { req, res }) => {
+    logout: (_, __, context) => {
+      const { req, res, hasRole } = context;
+      if (hasRole('guest')) {
+        throw new Error('You are GUEST. And cannot logout');
+      }
       Auth.logout(req, res);
       return true;
     },

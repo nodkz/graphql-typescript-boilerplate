@@ -3,9 +3,8 @@ import { IResolvers } from '../__generated__/graphql';
 const resolvers: IResolvers = {
   Query: {
     hello: (_, __, context) => {
-      const req = context.req as any;
-      if (req.user) {
-        return `Hi, ${req.user.login}`;
+      if (context.user) {
+        return `Hi, ${context.user.login}!!!`;
       }
       return `Hello, anon from ip ${context.ip}`;
     },

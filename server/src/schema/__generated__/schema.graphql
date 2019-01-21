@@ -78,6 +78,12 @@ type LoginPayload {
   ok: Boolean!
 }
 
+type Me {
+  user: User
+  userData: String
+  adminData: String
+}
+
 type Mutation {
   login(login: String!, password: String!): LoginPayload
   logout: Boolean
@@ -162,6 +168,7 @@ type Query {
     limit: Int! = 20
     offset: Int
   ): [Employee]!
+  me: Me
   order(id: ID!): Order
   orders(filter: OrderFilterInput, limit: Int! = 20, offset: Int): [Order]!
   product(id: ID!): Product
@@ -173,4 +180,9 @@ type Query {
 
   # A simple type for getting started!
   hello: String
+}
+
+type User {
+  login: String
+  roles: [String]!
 }

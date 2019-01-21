@@ -44,6 +44,7 @@
     "no-any": false,
     "no-arg": true,
     "no-bitwise": true,
+    "curly": false,
     "no-empty-interface": false,
     "no-conditional-assignment": true,
     "no-consecutive-blank-lines": false,
