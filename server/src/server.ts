@@ -5,24 +5,6 @@ import { ApolloServer } from 'apollo-server-express';
 import { schema, prepareContext } from './schema';
 import Auth from './auth';
 
-// function authMiddleware() {
-// return async function authMiddlewareHandler(ctx, next) {
-// next();
-// try {
-//   // protect GraphQL endpoint and check if cookie token is valid
-//   const tokenResponse = await validateToken(ctx.cookie.token);
-
-//   if (!tokenResponse.success) {
-//     ctx.throw(401, 'access_denied');
-//   } else {
-//     await next();
-//   }
-// } catch (e) {
-//   ctx.throw(401, 'access_denied');
-// }
-// };
-// }
-
 const app = express();
 app.use(cookieParser());
 const whitelist = ['http://localhost:3000', 'http://localhost:4000'];
@@ -40,12 +22,12 @@ app.use(
   })
 );
 
-app.get('/login', (req, res) => {
+app.use('/login', (req, res) => {
   const token = Auth.authenticate(req, res, req.query.login, req.query.password);
   res.json({ token });
 });
 
-app.get('/logout', (req, res) => {
+app.use('/logout', (req, res) => {
   Auth.logout(req, res);
   res.json({ ok: true });
 });
