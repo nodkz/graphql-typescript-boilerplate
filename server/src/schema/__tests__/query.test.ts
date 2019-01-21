@@ -19,23 +19,23 @@ describe('test query', () => {
     expect(res).toEqual({ data: { hello: 'Hello, 123' } });
   });
 
-  it('check user query', async () => {
-    const res = await graphql({
-      schema,
-      source: gql`
-        query Name($id: Int!) {
-          user(id: $id) {
-            name
-            ip
-            articles {
-              title
-            }
-          }
-        }
-      `,
-      contextValue: { ip: '123' },
-      variableValues: { id: 789 },
-    });
-    expect(res).toEqual({ data: { user: { ip: '123', name: 'User789' } } });
-  });
+  // it('check user query', async () => {
+  //   const res = await graphql({
+  //     schema,
+  //     source: gql-demo`
+  //       query Name($id: Int!) {
+  //         user(id: $id) {
+  //           name
+  //           ip
+  //           articles {
+  //             title
+  //           }
+  //         }
+  //       }
+  //     `,
+  //     contextValue: { ip: '123' },
+  //     variableValues: { id: 789 },
+  //   });
+  //   expect(res).toEqual({ data: { user: { ip: '123', name: 'User789' } } });
+  // });
 });

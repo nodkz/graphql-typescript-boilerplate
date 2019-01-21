@@ -1,4 +1,4 @@
 type Query {
   # A simple type for getting started!
-  hello(arg:String="dsd"): String
+  hello: String
 }

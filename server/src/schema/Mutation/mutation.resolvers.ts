@@ -1,7 +1,9 @@
 import { IResolvers } from '../__generated__/graphql';
 
 const resolvers: IResolvers = {
-  Mutation: {},
+  Mutation: {
+    time: () => new Date().toDateString(),
+  },
 };
 
 export default resolvers;

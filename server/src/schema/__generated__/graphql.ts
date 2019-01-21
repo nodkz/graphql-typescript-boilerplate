@@ -114,8 +114,6 @@ export interface Query {
   products: (Maybe<Product>)[];
   /** A simple type for getting started! */
   hello?: Maybe<string>;
-
-  user: User;
 }
 
 export interface Customer {
@@ -242,41 +240,10 @@ export interface Product {
   discontinued?: Maybe<boolean>;
 }
 
-export interface User {
-  name: string;
-
-  ip: string;
-
-  articles: Article[];
-
-  friends?: Maybe<User>;
-}
-
-export interface Article {
-  /** `aaa` | `ok` \\\ */
-  title: string;
-
-  desc?: Maybe<string>;
-
-  createdAt?: Maybe<number>;
-
-  updatedAt?: Maybe<number>;
-}
-
 export interface Mutation {
-  article?: Maybe<ArticleMutations>;
-
   customer?: Maybe<CustomerMutations>;
 
-  log?: Maybe<string>;
-}
-
-export interface ArticleMutations {
-  create?: Maybe<number>;
-
-  update?: Maybe<number>;
-
-  remove?: Maybe<number>;
+  time?: Maybe<string>;
 }
 
 export interface CustomerMutations {
@@ -330,14 +297,6 @@ export interface ProductsQueryArgs {
   limit: number;
 
   offset?: Maybe<number>;
-}
-export interface HelloQueryArgs {
-  arg?: string;
-}
-export interface UserQueryArgs {
-  id: number;
-
-  err?: Maybe<string>;
 }
 export interface CreateCustomerMutationsArgs {
   input: CustomerInput;
@@ -419,8 +378,6 @@ export namespace QueryResolvers {
     products?: ProductsResolver<(Maybe<Product>)[], TypeParent, Context>;
     /** A simple type for getting started! */
     hello?: HelloResolver<Maybe<string>, TypeParent, Context>;
-
-    user?: UserResolver<User, TypeParent, Context>;
   }
 
   export type CustomerResolver<
@@ -515,21 +472,7 @@ export namespace QueryResolvers {
     R = Maybe<string>,
     Parent = {},
     Context = GraphQLContext
-  > = Resolver<R, Parent, Context, HelloArgs>;
-  export interface HelloArgs {
-    arg?: string;
-  }
-
-  export type UserResolver<
-    R = User,
-    Parent = {},
-    Context = GraphQLContext
-  > = Resolver<R, Parent, Context, UserArgs>;
-  export interface UserArgs {
-    id: number;
-
-    err?: Maybe<string>;
-  }
+  > = Resolver<R, Parent, Context>;
 }
 
 export namespace CustomerResolvers {
@@ -969,124 +912,21 @@ export namespace ProductResolvers {
   > = Resolver<R, Parent, Context>;
 }
 
-export namespace UserResolvers {
-  export interface Resolvers<Context = GraphQLContext, TypeParent = User> {
-    name?: NameResolver<string, TypeParent, Context>;
-
-    ip?: IpResolver<string, TypeParent, Context>;
-
-    articles?: ArticlesResolver<Article[], TypeParent, Context>;
-
-    friends?: FriendsResolver<Maybe<User>, TypeParent, Context>;
-  }
-
-  export type NameResolver<
-    R = string,
-    Parent = User,
-    Context = GraphQLContext
-  > = Resolver<R, Parent, Context>;
-  export type IpResolver<
-    R = string,
-    Parent = User,
-    Context = GraphQLContext
-  > = Resolver<R, Parent, Context>;
-  export type ArticlesResolver<
-    R = Article[],
-    Parent = User,
-    Context = GraphQLContext
-  > = Resolver<R, Parent, Context>;
-  export type FriendsResolver<
-    R = Maybe<User>,
-    Parent = User,
-    Context = GraphQLContext
-  > = Resolver<R, Parent, Context>;
-}
-
-export namespace ArticleResolvers {
-  export interface Resolvers<Context = GraphQLContext, TypeParent = Article> {
-    /** `aaa` | `ok` \\\ */
-    title?: TitleResolver<string, TypeParent, Context>;
-
-    desc?: DescResolver<Maybe<string>, TypeParent, Context>;
-
-    createdAt?: CreatedAtResolver<Maybe<number>, TypeParent, Context>;
-
-    updatedAt?: UpdatedAtResolver<Maybe<number>, TypeParent, Context>;
-  }
-
-  export type TitleResolver<
-    R = string,
-    Parent = Article,
-    Context = GraphQLContext
-  > = Resolver<R, Parent, Context>;
-  export type DescResolver<
-    R = Maybe<string>,
-    Parent = Article,
-    Context = GraphQLContext
-  > = Resolver<R, Parent, Context>;
-  export type CreatedAtResolver<
-    R = Maybe<number>,
-    Parent = Article,
-    Context = GraphQLContext
-  > = Resolver<R, Parent, Context>;
-  export type UpdatedAtResolver<
-    R = Maybe<number>,
-    Parent = Article,
-    Context = GraphQLContext
-  > = Resolver<R, Parent, Context>;
-}
-
 export namespace MutationResolvers {
   export interface Resolvers<Context = GraphQLContext, TypeParent = {}> {
-    article?: ArticleResolver<Maybe<ArticleMutations>, TypeParent, Context>;
-
     customer?: CustomerResolver<Maybe<CustomerMutations>, TypeParent, Context>;
 
-    log?: LogResolver<Maybe<string>, TypeParent, Context>;
+    time?: TimeResolver<Maybe<string>, TypeParent, Context>;
   }
 
-  export type ArticleResolver<
-    R = Maybe<ArticleMutations>,
-    Parent = {},
-    Context = GraphQLContext
-  > = Resolver<R, Parent, Context>;
   export type CustomerResolver<
     R = Maybe<CustomerMutations>,
     Parent = {},
     Context = GraphQLContext
   > = Resolver<R, Parent, Context>;
-  export type LogResolver<
+  export type TimeResolver<
     R = Maybe<string>,
     Parent = {},
-    Context = GraphQLContext
-  > = Resolver<R, Parent, Context>;
-}
-
-export namespace ArticleMutationsResolvers {
-  export interface Resolvers<
-    Context = GraphQLContext,
-    TypeParent = ArticleMutations
-  > {
-    create?: CreateResolver<Maybe<number>, TypeParent, Context>;
-
-    update?: UpdateResolver<Maybe<number>, TypeParent, Context>;
-
-    remove?: RemoveResolver<Maybe<number>, TypeParent, Context>;
-  }
-
-  export type CreateResolver<
-    R = Maybe<number>,
-    Parent = ArticleMutations,
-    Context = GraphQLContext
-  > = Resolver<R, Parent, Context>;
-  export type UpdateResolver<
-    R = Maybe<number>,
-    Parent = ArticleMutations,
-    Context = GraphQLContext
-  > = Resolver<R, Parent, Context>;
-  export type RemoveResolver<
-    R = Maybe<number>,
-    Parent = ArticleMutations,
     Context = GraphQLContext
   > = Resolver<R, Parent, Context>;
 }
@@ -1169,10 +1009,7 @@ export interface IResolvers {
   Order?: OrderResolvers.Resolvers;
   OrderDetails?: OrderDetailsResolvers.Resolvers;
   Product?: ProductResolvers.Resolvers;
-  User?: UserResolvers.Resolvers;
-  Article?: ArticleResolvers.Resolvers;
   Mutation?: MutationResolvers.Resolvers;
-  ArticleMutations?: ArticleMutationsResolvers.Resolvers;
   CustomerMutations?: CustomerMutationsResolvers.Resolvers;
   CustomerCreatePayload?: CustomerCreatePayloadResolvers.Resolvers;
   Date?: GraphQLScalarType;
@@ -1200,20 +1037,6 @@ input AddressInput {
   postalCode: String
   country: String
   phone: String
-}
-
-type Article {
-  # \`aaa\` | \`ok\` \\\\\\
-  title: String!
-  desc: String
-  createdAt: Int
-  updatedAt: Int
-}
-
-type ArticleMutations {
-  create: Float
-  update: Float
-  remove: Float
 }
 
 type Customer {
@@ -1274,9 +1097,8 @@ input EmployeeFilterInput {
 }
 
 type Mutation {
-  article: ArticleMutations
   customer: CustomerMutations
-  log: String
+  time: String
 }
 
 type Order {
@@ -1354,15 +1176,7 @@ type Query {
   products(filter: ProductFilterInput, limit: Int! = 20, offset: Int): [Product]!
 
   # A simple type for getting started!
-  hello(arg: String = "dsd"): String
-  user(id: Int!, err: String): User!
-}
-
-type User {
-  name: String!
-  ip: String!
-  articles: [Article!]!
-  friends: User
+  hello: String
 }
 
 `;

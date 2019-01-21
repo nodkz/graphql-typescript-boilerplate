@@ -16,20 +16,6 @@ input AddressInput {
   phone: String
 }
 
-type Article {
-  # `aaa` | `ok` \\\
-  title: String!
-  desc: String
-  createdAt: Int
-  updatedAt: Int
-}
-
-type ArticleMutations {
-  create: Float
-  update: Float
-  remove: Float
-}
-
 type Customer {
   _id: ID!
   customerID: String!
@@ -88,9 +74,8 @@ input EmployeeFilterInput {
 }
 
 type Mutation {
-  article: ArticleMutations
   customer: CustomerMutations
-  log: String
+  time: String
 }
 
 type Order {
@@ -180,13 +165,5 @@ type Query {
   ): [Product]!
 
   # A simple type for getting started!
-  hello(arg: String = "dsd"): String
-  user(id: Int!, err: String): User!
-}
-
-type User {
-  name: String!
-  ip: String!
-  articles: [Article!]!
-  friends: User
+  hello: String
 }

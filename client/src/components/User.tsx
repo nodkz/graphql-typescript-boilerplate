@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import gql from 'graphql-tag';
 import MyQuery from './MyQuery';
-import ArticlePage from './ArticlePage';
-import { User_user } from './__generated__/User';
+// import ArticlePage from './ArticlePage';
 
 interface UserProps {
-  data: User_user;
+  data: any;
 }
 class User extends Component<UserProps> {
   public render() {
@@ -18,26 +17,28 @@ class User extends Component<UserProps> {
   }
 }
 
-export const UserQuery = gql`
-  query User($id: Int!) {
-    user(id: $id) {
-      name
-      friends {
-        friends {
-          friends {
-            friends {
-              name
-              ip
-            }
-          }
-        }
-      }
-      articles {
-        ...ArticlePageArticle
-      }
-    }
-  }
-  ${ArticlePage.fragments.article}
-`;
+// export const UserQuery = gql-demo`
+//   qu-ery User($id: Int!) {
+//     user(id: $id) {
+//       name
+//       friends {
+//         friends {
+//           friends {
+//             friends {
+//               name
+//               ip
+//             }
+//           }
+//         }
+//       }
+//       articles {
+//         ...ArticlePageArticle
+//       }
+//     }
+//   }
+//   ${ArticlePage.fragments.article}
+// `;
 
-export default () => <MyQuery component={User} query={UserQuery} variables={{ id: 123 }} />;
+// export default () => <MyQuery component={User} query={UserQuery} variables={{ id: 123 }} />;
+
+export default () => <div>user data mock</div>;

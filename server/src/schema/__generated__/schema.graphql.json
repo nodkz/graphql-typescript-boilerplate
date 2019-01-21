@@ -272,44 +272,8 @@
           {
             "name": "hello",
             "description": "A simple type for getting started!",
-            "args": [
-              {
-                "name": "arg",
-                "description": "",
-                "type": { "kind": "SCALAR", "name": "String", "ofType": null },
-                "defaultValue": "\"dsd\""
-              }
-            ],
+            "args": [],
             "type": { "kind": "SCALAR", "name": "String", "ofType": null },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "user",
-            "description": "",
-            "args": [
-              {
-                "name": "id",
-                "description": "",
-                "type": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": { "kind": "SCALAR", "name": "Int", "ofType": null }
-                },
-                "defaultValue": null
-              },
-              {
-                "name": "err",
-                "description": "",
-                "type": { "kind": "SCALAR", "name": "String", "ofType": null },
-                "defaultValue": null
-              }
-            ],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": { "kind": "OBJECT", "name": "User", "ofType": null }
-            },
             "isDeprecated": false,
             "deprecationReason": null
           }
@@ -1210,135 +1174,9 @@
       },
       {
         "kind": "OBJECT",
-        "name": "User",
-        "description": "",
-        "fields": [
-          {
-            "name": "name",
-            "description": "",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": { "kind": "SCALAR", "name": "String", "ofType": null }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "ip",
-            "description": "",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": { "kind": "SCALAR", "name": "String", "ofType": null }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "articles",
-            "description": "",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "OBJECT",
-                    "name": "Article",
-                    "ofType": null
-                  }
-                }
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "friends",
-            "description": "",
-            "args": [],
-            "type": { "kind": "OBJECT", "name": "User", "ofType": null },
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "OBJECT",
-        "name": "Article",
-        "description": "",
-        "fields": [
-          {
-            "name": "title",
-            "description": "`aaa` | `ok` \\\\\\",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": { "kind": "SCALAR", "name": "String", "ofType": null }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "desc",
-            "description": "",
-            "args": [],
-            "type": { "kind": "SCALAR", "name": "String", "ofType": null },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "createdAt",
-            "description": "",
-            "args": [],
-            "type": { "kind": "SCALAR", "name": "Int", "ofType": null },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "updatedAt",
-            "description": "",
-            "args": [],
-            "type": { "kind": "SCALAR", "name": "Int", "ofType": null },
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "OBJECT",
         "name": "Mutation",
         "description": "",
         "fields": [
-          {
-            "name": "article",
-            "description": "",
-            "args": [],
-            "type": {
-              "kind": "OBJECT",
-              "name": "ArticleMutations",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
           {
             "name": "customer",
             "description": "",
@@ -1352,45 +1190,10 @@
             "deprecationReason": null
           },
           {
-            "name": "log",
+            "name": "time",
             "description": "",
             "args": [],
             "type": { "kind": "SCALAR", "name": "String", "ofType": null },
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "OBJECT",
-        "name": "ArticleMutations",
-        "description": "",
-        "fields": [
-          {
-            "name": "create",
-            "description": "",
-            "args": [],
-            "type": { "kind": "SCALAR", "name": "Float", "ofType": null },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "update",
-            "description": "",
-            "args": [],
-            "type": { "kind": "SCALAR", "name": "Float", "ofType": null },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "remove",
-            "description": "",
-            "args": [],
-            "type": { "kind": "SCALAR", "name": "Float", "ofType": null },
             "isDeprecated": false,
             "deprecationReason": null
           }
