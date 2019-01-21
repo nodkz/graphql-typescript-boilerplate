@@ -22,11 +22,35 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>React App</title>
+    <title>Northwind data explorer via Apollo</title>
+    <link rel="stylesheet" href="./bootstrap.min.css" />
+
+
+    <style>
+      .bgOnHover:hover {
+        background-color: #b6ddff;
+      }
+      .bordered {
+        border: 1px solid #ddd;
+      }
+      .lrspace {
+        margin-left: 10px;
+        margin-right: 10px;
+        padding-left: 5px;
+        padding-right: 5px;
+      }
+      .bspace {
+        margin-bottom: 10px;
+        padding-bottom: 5px;
+      }
+    </style>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div class="container">
+
     <div id="root"></div>
+    </div>
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
@@ -37,5 +61,7 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+
+    
   </body>
 </html>

@@ -13,6 +13,9 @@ import 'whatwg-fetch';
 import './App.css';
 import User from './components/User';
 import Hello from './components/Hello';
+import MainPage from './components/MainPage';
+import Menu from './components/Menu';
+import Page404 from './components/Page404';
 const browserHistory = createBrowserHistory();
 
 const cache = new InMemoryCache();
@@ -52,21 +55,13 @@ class App extends Component {
     return (
       <ApolloProvider client={client}>
         <Router history={browserHistory}>
-          <div className="App">
-            <div>
-              <p>
-                Edit <code>src/App.tsx</code> and save to reload!!!!
-                <a href="https://reactjs.org">Learn React</a>
-              </p>
-            </div>
-            <div>
-              <Link to="/">Home</Link> <Link to="/user">User</Link> <Link to="/hello">Hello</Link>
-            </div>
-
+          <div style={{ paddingTop: '10px' }}>
+            <Menu />
             <Switch>
-              <Route path="/user" render={() => <User />} />
-              <Route path="/hello" render={() => <Hello />} />
-              <Route render={() => <div>home</div>} />
+              <Route path="/" exact component={MainPage} />
+              <Route path="/user" component={User} />
+              <Route path="/hello" component={Hello} />
+              <Route component={Page404} />
             </Switch>
           </div>
         </Router>
