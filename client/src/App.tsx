@@ -24,6 +24,7 @@ const httpLink = new HttpLink({
   uri: 'http://localhost:4000/graphql',
   fetch,
   // credentials: 'same-origin',
+  credentials: 'include',
   headers: {},
 });
 
@@ -49,6 +50,14 @@ const link = ApolloLink.from([
 
 const client = new ApolloClient({ cache, link });
 (window as any).aaa = cache;
+
+client.query({
+  query: gql`
+    query Auth {
+      hello
+    }
+  `,
+});
 
 class App extends Component {
   public render() {

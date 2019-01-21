@@ -1,0 +1,9 @@
+extend type Mutation {
+  login(login: String! password: String!): LoginPayload
+  logout: Boolean
+}
+
+type LoginPayload {
+  token: String
+  ok: Boolean!
+}

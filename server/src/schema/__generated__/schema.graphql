@@ -73,7 +73,14 @@ input EmployeeFilterInput {
   address: AddressInput
 }
 
+type LoginPayload {
+  token: String
+  ok: Boolean!
+}
+
 type Mutation {
+  login(login: String!, password: String!): LoginPayload
+  logout: Boolean
   customer: CustomerMutations
   time: String
 }

@@ -241,9 +241,19 @@ export interface Product {
 }
 
 export interface Mutation {
+  login?: Maybe<LoginPayload>;
+
+  logout?: Maybe<boolean>;
+
   customer?: Maybe<CustomerMutations>;
 
   time?: Maybe<string>;
+}
+
+export interface LoginPayload {
+  token?: Maybe<string>;
+
+  ok: boolean;
 }
 
 export interface CustomerMutations {
@@ -297,6 +307,11 @@ export interface ProductsQueryArgs {
   limit: number;
 
   offset?: Maybe<number>;
+}
+export interface LoginMutationArgs {
+  login: string;
+
+  password: string;
 }
 export interface CreateCustomerMutationsArgs {
   input: CustomerInput;
@@ -914,11 +929,31 @@ export namespace ProductResolvers {
 
 export namespace MutationResolvers {
   export interface Resolvers<Context = GraphQLContext, TypeParent = {}> {
+    login?: LoginResolver<Maybe<LoginPayload>, TypeParent, Context>;
+
+    logout?: LogoutResolver<Maybe<boolean>, TypeParent, Context>;
+
     customer?: CustomerResolver<Maybe<CustomerMutations>, TypeParent, Context>;
 
     time?: TimeResolver<Maybe<string>, TypeParent, Context>;
   }
 
+  export type LoginResolver<
+    R = Maybe<LoginPayload>,
+    Parent = {},
+    Context = GraphQLContext
+  > = Resolver<R, Parent, Context, LoginArgs>;
+  export interface LoginArgs {
+    login: string;
+
+    password: string;
+  }
+
+  export type LogoutResolver<
+    R = Maybe<boolean>,
+    Parent = {},
+    Context = GraphQLContext
+  > = Resolver<R, Parent, Context>;
   export type CustomerResolver<
     R = Maybe<CustomerMutations>,
     Parent = {},
@@ -927,6 +962,28 @@ export namespace MutationResolvers {
   export type TimeResolver<
     R = Maybe<string>,
     Parent = {},
+    Context = GraphQLContext
+  > = Resolver<R, Parent, Context>;
+}
+
+export namespace LoginPayloadResolvers {
+  export interface Resolvers<
+    Context = GraphQLContext,
+    TypeParent = LoginPayload
+  > {
+    token?: TokenResolver<Maybe<string>, TypeParent, Context>;
+
+    ok?: OkResolver<boolean, TypeParent, Context>;
+  }
+
+  export type TokenResolver<
+    R = Maybe<string>,
+    Parent = LoginPayload,
+    Context = GraphQLContext
+  > = Resolver<R, Parent, Context>;
+  export type OkResolver<
+    R = boolean,
+    Parent = LoginPayload,
     Context = GraphQLContext
   > = Resolver<R, Parent, Context>;
 }
@@ -1010,6 +1067,7 @@ export interface IResolvers {
   OrderDetails?: OrderDetailsResolvers.Resolvers;
   Product?: ProductResolvers.Resolvers;
   Mutation?: MutationResolvers.Resolvers;
+  LoginPayload?: LoginPayloadResolvers.Resolvers;
   CustomerMutations?: CustomerMutationsResolvers.Resolvers;
   CustomerCreatePayload?: CustomerCreatePayloadResolvers.Resolvers;
   Date?: GraphQLScalarType;
@@ -1096,7 +1154,14 @@ input EmployeeFilterInput {
   address: AddressInput
 }
 
+type LoginPayload {
+  token: String
+  ok: Boolean!
+}
+
 type Mutation {
+  login(login: String!, password: String!): LoginPayload
+  logout: Boolean
   customer: CustomerMutations
   time: String
 }

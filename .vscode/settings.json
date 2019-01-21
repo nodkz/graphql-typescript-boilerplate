@@ -9,5 +9,7 @@
       "editor.formatOnSave": true
   },
   "prettier.eslintIntegration": true,
-  "prettier.tslintIntegration": true
+  "prettier.tslintIntegration": true,
+  "types-autoinstaller.useYarn": true,
+  "types-autoinstaller.saveAsDevDependency": true
 }
