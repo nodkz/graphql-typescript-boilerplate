@@ -46,6 +46,8 @@ const resolvers: IResolvers = {
     //   return withLog(employeesData.find({ employeeID: reportsTo }).value() as any);
     // },
     reportsTo: ({ reportsTo }: any, _, context, info) => {
+      // Подробная статья про DataLoader:
+      // https://github.com/nodkz/conf-talks/tree/master/articles/graphql/dataloader
       const { dataloaders } = context;
 
       // единожы инициализируем DataLoader для получения авторов по ids
