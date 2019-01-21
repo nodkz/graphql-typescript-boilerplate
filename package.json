@@ -60,6 +60,8 @@
     "lint": "npm run eslint && npm run tslint && cd client/ && npm run lint-graphql",
     "eslint": "eslint --fix --ext js --ext jsx .",
     "tslint": "tslint --fix -p tsconfig.json -c tslint.json",
-    "watch": "concurrently -k -p \"[{name}]\" -n \"Server,Client\" -c \"yellow.bold,blue.bold\" \"cd ./server && npm run watch\" \"cd ./client && npm run watch\""
+    "watch": "concurrently -k -p \"[{name}]\" -n \"Server,Client\" -c \"yellow.bold,blue.bold\" npm:watch-server npm:watch-client",
+    "watch-client": "cd ./client && npm run watch",
+    "watch-server": "cd ./server && npm run watch"
   }
 }

@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "build-ts": "tsc",
-    "watch": "yarn clear && concurrently npm:watch-*",
+    "watch": "yarn clear && concurrently -k npm:watch-*",
     "watch-ts": "tsc --watch --preserveWatchOutput",
     "watch-node": "nodemon --watch ./dist --delay 1",
     "watch-gcg": "npm run gcg -- --watch",

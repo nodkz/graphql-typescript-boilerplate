@@ -29,7 +29,7 @@
     "lint-graphql": "cd ../ && eslint -c .eslintrc-graphql --no-eslintrc --ext ts --ext tsx client/src/",
     "clear": "find . -name \"__generated__\" -exec rm -rf '{}' +",
     "apollo-codegen": "apollo client:codegen --target=typescript --localSchemaFile=../server/src/schema/__generated__/schema.graphql --includes=./src/**/*.{ts,tsx} --tagName gql",
-    "watch": "npm run clear && concurrently npm:watch-*",
+    "watch": "npm run clear && concurrently -k npm:watch-*",
     "watch-app": "npm run start",
     "watch-apollo-codegen": "npm run apollo-codegen -- --watch"
   },
