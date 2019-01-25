@@ -2,10 +2,10 @@
 {
   schema: {
     // For Client query autosuggesting
-    // files: 'server/src/schema/__generated__/schema.graphql'
+       files: 'server/src/schema/__generated__/schema.graphql'
     
     // For Server: GoTo Definition + Type Checks
-    files: 'server/src/schema/**/*.gql' 
+    // files: 'server/src/schema/**/*.gql' 
   },
   query: {
     files: [

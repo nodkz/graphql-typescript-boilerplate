@@ -1,24 +1,24 @@
 import React, { Component, ComponentType, ComponentClass } from 'react';
-import { Query } from 'react-apollo';
+import { Mutation, MutationFn, MutationResult } from 'react-apollo';
 import { DocumentNode } from 'graphql';
 import { FetchPolicy } from 'apollo-client';
 
 interface LoaderProps {
   component: ComponentType<any>; // TODO: fix
-  query: DocumentNode;
+  mutation: DocumentNode;
   variables?: {};
   fetchPolicy?: FetchPolicy;
 }
 
-export default function MyQuery({
+export default function MyMutation({
   component: Cmp,
-  query,
+  mutation,
   variables,
   fetchPolicy = 'cache-first',
 }: LoaderProps) {
   return (
-    <Query fetchPolicy={fetchPolicy} query={query} variables={variables}>
-      {({ loading, error, data }) => {
+    <Mutation fetchPolicy={fetchPolicy} mutation={mutation} variables={variables}>
+      {(mutate: MutationFn, { loading, error, data, called, client }: MutationResult) => {
         if (loading) {
           return `Loading`;
         }
@@ -28,6 +28,6 @@ export default function MyQuery({
 
         return <Cmp data={data} />;
       }}
-    </Query>
+    </Mutation>
   );
 }

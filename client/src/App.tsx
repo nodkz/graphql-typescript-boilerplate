@@ -16,6 +16,7 @@ import Hello from './components/Hello';
 import MainPage from './components/MainPage';
 import Menu from './components/Menu';
 import Page404 from './components/Page404';
+import Login from './components/Login';
 const browserHistory = createBrowserHistory();
 
 const cache = new InMemoryCache();
@@ -42,7 +43,7 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
 });
 
 const link = ApolloLink.from([
-  // errorLink,
+  errorLink,
   // requestHandler,
   // stateLink,
   httpLink,
@@ -70,6 +71,7 @@ class App extends Component {
               <Route path="/" exact component={MainPage} />
               <Route path="/user" component={User} />
               <Route path="/hello" component={Hello} />
+              <Route path="/login" component={Login} />
               <Route component={Page404} />
             </Switch>
           </div>
