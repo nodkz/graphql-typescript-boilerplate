@@ -3,6 +3,10 @@ import { withApollo, Mutation } from 'react-apollo';
 import { ApolloClient } from 'apollo-client';
 import { Form as RFForm, Field as RFField } from 'react-final-form';
 import AuthUserDataFragment from './AuthUserDataFragment';
+import {
+  AuthLoginFormMutation,
+  AuthLoginFormMutationVariables,
+} from './__generated__/AuthLoginFormMutation';
 
 import { Button, FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
 import gql from 'graphql-tag';
@@ -11,6 +15,8 @@ interface Props {
   client: ApolloClient<any>;
 }
 
+class TypedMutation extends Mutation<AuthLoginFormMutation, AuthLoginFormMutationVariables> {}
+
 class AuthLoginForm extends Component<Props> {
   public submit = (values: any, form: any): any => {
     console.log(values, form);
@@ -18,11 +24,10 @@ class AuthLoginForm extends Component<Props> {
 
   public render() {
     return (
-      <Mutation
+      <TypedMutation
         mutation={gql`
-          mutation LoginFormMutation($login: String!, $password: String!) {
+          mutation AuthLoginFormMutation($login: String!, $password: String!) {
             login(login: $login, password: $password) {
-              token
               query {
                 ...AuthUserDataFragment
               }
@@ -31,11 +36,16 @@ class AuthLoginForm extends Component<Props> {
           ${AuthUserDataFragment}
         `}
       >
-        {(submitMutation, { data, client }) => (
+        {(submitMutation, { client }) => (
           <RFForm
             initialValues={{ login: 'admin', password: '' }}
-            onSubmit={async values => {
-              const result: any = await submitMutation({ variables: values });
+            onSubmit={async (values: any) => {
+              const result: any = await submitMutation({
+                variables: {
+                  login: values.login,
+                  password: values.password,
+                },
+              });
               if (result && result.data && result.data.login && result.data.login.token) {
                 client.resetStore();
               } else {
@@ -76,7 +86,7 @@ class AuthLoginForm extends Component<Props> {
             )}
           />
         )}
-      </Mutation>
+      </TypedMutation>
     );
   }
 }
