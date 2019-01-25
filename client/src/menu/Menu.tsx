@@ -4,15 +4,14 @@ import { LinkContainer } from 'react-router-bootstrap';
 import AuthMenu from '../auth/AuthMenu';
 
 export const menuLinks: { [link: string]: string } = {
-  '/user': 'Users',
   '/orders': 'Orders',
   '/products': 'Products',
   '/customers': 'Customers',
   '/employees': 'Employees',
-  '/categories': 'Categories',
-  '/shippers': 'Shippers',
-  '/suppliers': 'Suppliers',
-  '/regions': 'Regions',
+  // '/categories': 'Categories',
+  // '/shippers': 'Shippers',
+  // '/suppliers': 'Suppliers',
+  // '/regions': 'Regions',
 };
 
 export default class Menu extends React.Component<{}> {

@@ -109,7 +109,9 @@ export interface Query {
 
   order?: Maybe<Order>;
 
-  orders: (Maybe<Order>)[];
+  orders: Order[];
+
+  orderPagination: OrderPagination;
 
   product?: Maybe<Product>;
 
@@ -197,6 +199,8 @@ export interface User {
 }
 
 export interface Order {
+  _id: number;
+
   orderID?: Maybe<number>;
 
   customerID?: Maybe<string>;
@@ -260,6 +264,27 @@ export interface Product {
   discontinued?: Maybe<boolean>;
 }
 
+export interface OrderPagination {
+  items: Order[];
+
+  pageInfo: PaginationInfo;
+}
+
+export interface PaginationInfo {
+  /** Total number of pages */
+  totalPages: number;
+  /** Total number of items */
+  totalItems: number;
+  /** Current page number */
+  page: number;
+  /** Number of items per page */
+  perPage: number;
+  /** When paginating forwards, are there more items? */
+  hasNextPage: boolean;
+  /** When paginating backwards, are there more items? */
+  hasPreviousPage: boolean;
+}
+
 export interface Mutation {
   login?: Maybe<LoginPayload>;
 
@@ -319,6 +344,13 @@ export interface OrdersQueryArgs {
   limit: number;
 
   offset?: Maybe<number>;
+}
+export interface OrderPaginationQueryArgs {
+  filter?: Maybe<OrderFilterInput>;
+
+  page: number;
+
+  perPage: number;
 }
 export interface ProductQueryArgs {
   id: string;
@@ -410,7 +442,13 @@ export namespace QueryResolvers {
 
     order?: OrderResolver<Maybe<Order>, TypeParent, Context>;
 
-    orders?: OrdersResolver<(Maybe<Order>)[], TypeParent, Context>;
+    orders?: OrdersResolver<Order[], TypeParent, Context>;
+
+    orderPagination?: OrderPaginationResolver<
+      OrderPagination,
+      TypeParent,
+      Context
+    >;
 
     product?: ProductResolver<Maybe<Product>, TypeParent, Context>;
 
@@ -478,7 +516,7 @@ export namespace QueryResolvers {
   }
 
   export type OrdersResolver<
-    R = (Maybe<Order>)[],
+    R = Order[],
     Parent = {},
     Context = GraphQLContext
   > = Resolver<R, Parent, Context, OrdersArgs>;
@@ -488,6 +526,19 @@ export namespace QueryResolvers {
     limit: number;
 
     offset?: Maybe<number>;
+  }
+
+  export type OrderPaginationResolver<
+    R = OrderPagination,
+    Parent = {},
+    Context = GraphQLContext
+  > = Resolver<R, Parent, Context, OrderPaginationArgs>;
+  export interface OrderPaginationArgs {
+    filter?: Maybe<OrderFilterInput>;
+
+    page: number;
+
+    perPage: number;
   }
 
   export type ProductResolver<
@@ -792,6 +843,8 @@ export namespace UserResolvers {
 
 export namespace OrderResolvers {
   export interface Resolvers<Context = GraphQLContext, TypeParent = Order> {
+    _id?: _IdResolver<number, TypeParent, Context>;
+
     orderID?: OrderIdResolver<Maybe<number>, TypeParent, Context>;
 
     customerID?: CustomerIdResolver<Maybe<string>, TypeParent, Context>;
@@ -819,6 +872,11 @@ export namespace OrderResolvers {
     details?: DetailsResolver<(Maybe<OrderDetails>)[], TypeParent, Context>;
   }
 
+  export type _IdResolver<
+    R = number,
+    Parent = Order,
+    Context = GraphQLContext
+  > = Resolver<R, Parent, Context>;
   export type OrderIdResolver<
     R = Maybe<number>,
     Parent = Order,
@@ -1015,6 +1073,79 @@ export namespace ProductResolvers {
   > = Resolver<R, Parent, Context>;
 }
 
+export namespace OrderPaginationResolvers {
+  export interface Resolvers<
+    Context = GraphQLContext,
+    TypeParent = OrderPagination
+  > {
+    items?: ItemsResolver<Order[], TypeParent, Context>;
+
+    pageInfo?: PageInfoResolver<PaginationInfo, TypeParent, Context>;
+  }
+
+  export type ItemsResolver<
+    R = Order[],
+    Parent = OrderPagination,
+    Context = GraphQLContext
+  > = Resolver<R, Parent, Context>;
+  export type PageInfoResolver<
+    R = PaginationInfo,
+    Parent = OrderPagination,
+    Context = GraphQLContext
+  > = Resolver<R, Parent, Context>;
+}
+
+export namespace PaginationInfoResolvers {
+  export interface Resolvers<
+    Context = GraphQLContext,
+    TypeParent = PaginationInfo
+  > {
+    /** Total number of pages */
+    totalPages?: TotalPagesResolver<number, TypeParent, Context>;
+    /** Total number of items */
+    totalItems?: TotalItemsResolver<number, TypeParent, Context>;
+    /** Current page number */
+    page?: PageResolver<number, TypeParent, Context>;
+    /** Number of items per page */
+    perPage?: PerPageResolver<number, TypeParent, Context>;
+    /** When paginating forwards, are there more items? */
+    hasNextPage?: HasNextPageResolver<boolean, TypeParent, Context>;
+    /** When paginating backwards, are there more items? */
+    hasPreviousPage?: HasPreviousPageResolver<boolean, TypeParent, Context>;
+  }
+
+  export type TotalPagesResolver<
+    R = number,
+    Parent = PaginationInfo,
+    Context = GraphQLContext
+  > = Resolver<R, Parent, Context>;
+  export type TotalItemsResolver<
+    R = number,
+    Parent = PaginationInfo,
+    Context = GraphQLContext
+  > = Resolver<R, Parent, Context>;
+  export type PageResolver<
+    R = number,
+    Parent = PaginationInfo,
+    Context = GraphQLContext
+  > = Resolver<R, Parent, Context>;
+  export type PerPageResolver<
+    R = number,
+    Parent = PaginationInfo,
+    Context = GraphQLContext
+  > = Resolver<R, Parent, Context>;
+  export type HasNextPageResolver<
+    R = boolean,
+    Parent = PaginationInfo,
+    Context = GraphQLContext
+  > = Resolver<R, Parent, Context>;
+  export type HasPreviousPageResolver<
+    R = boolean,
+    Parent = PaginationInfo,
+    Context = GraphQLContext
+  > = Resolver<R, Parent, Context>;
+}
+
 export namespace MutationResolvers {
   export interface Resolvers<Context = GraphQLContext, TypeParent = {}> {
     login?: LoginResolver<Maybe<LoginPayload>, TypeParent, Context>;
@@ -1163,6 +1294,8 @@ export interface IResolvers {
   Order?: OrderResolvers.Resolvers;
   OrderDetails?: OrderDetailsResolvers.Resolvers;
   Product?: ProductResolvers.Resolvers;
+  OrderPagination?: OrderPaginationResolvers.Resolvers;
+  PaginationInfo?: PaginationInfoResolvers.Resolvers;
   Mutation?: MutationResolvers.Resolvers;
   LoginPayload?: LoginPayloadResolvers.Resolvers;
   CustomerMutations?: CustomerMutationsResolvers.Resolvers;
@@ -1271,6 +1404,7 @@ type Mutation {
 }
 
 type Order {
+  _id: Int!
   orderID: Int
   customerID: String
   customer: Customer
@@ -1307,6 +1441,31 @@ input OrderFilterInput {
   shipAddress: AddressInput
 }
 
+type OrderPagination {
+  items: [Order!]!
+  pageInfo: PaginationInfo!
+}
+
+type PaginationInfo {
+  # Total number of pages
+  totalPages: Int!
+
+  # Total number of items
+  totalItems: Int!
+
+  # Current page number
+  page: Int!
+
+  # Number of items per page
+  perPage: Int!
+
+  # When paginating forwards, are there more items?
+  hasNextPage: Boolean!
+
+  # When paginating backwards, are there more items?
+  hasPreviousPage: Boolean!
+}
+
 type Product {
   _id: ID!
   productID: Int!
@@ -1341,7 +1500,8 @@ type Query {
   employees(filter: EmployeeFilterInput, limit: Int! = 20, offset: Int): [Employee]!
   me: Me
   order(id: ID!): Order
-  orders(filter: OrderFilterInput, limit: Int! = 20, offset: Int): [Order]!
+  orders(filter: OrderFilterInput, limit: Int! = 20, offset: Int): [Order!]!
+  orderPagination(filter: OrderFilterInput, page: Int! = 1, perPage: Int! = 20): OrderPagination!
   product(id: ID!): Product
   products(filter: ProductFilterInput, limit: Int! = 20, offset: Int): [Product]!
 

@@ -1,4 +1,5 @@
 type Order {
+  _id: Int!
   orderID: Int
   customerID: String
   customer: Customer
@@ -24,7 +25,13 @@ type OrderDetails {
 
 extend type Query {
   order(id: ID!): Order
-  orders(filter: OrderFilterInput, limit: Int! = 20, offset: Int): [Order]!
+  orders(filter: OrderFilterInput, limit: Int! = 20, offset: Int): [Order!]!
+  orderPagination(filter: OrderFilterInput, page: Int! = 1, perPage: Int! = 20): OrderPagination!
+}
+
+type OrderPagination {
+  items: [Order!]!
+  pageInfo: PaginationInfo!
 }
 
 input OrderFilterInput {

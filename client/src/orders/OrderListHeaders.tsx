@@ -4,7 +4,7 @@ interface Props {
   count: number;
 }
 
-export default function OrderHeaders({ count }: Props) {
+export default function OrderListHeaders({ count }: Props) {
   if (!count) {
     return <h3>Nothing found! But it is no reason to be upset ;)</h3>;
   }

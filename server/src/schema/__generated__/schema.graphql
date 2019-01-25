@@ -93,6 +93,7 @@ type Mutation {
 }
 
 type Order {
+  _id: Int!
   orderID: Int
   customerID: String
   customer: Customer
@@ -127,6 +128,31 @@ input OrderFilterInput {
   freight: Float
   shipName: String
   shipAddress: AddressInput
+}
+
+type OrderPagination {
+  items: [Order!]!
+  pageInfo: PaginationInfo!
+}
+
+type PaginationInfo {
+  # Total number of pages
+  totalPages: Int!
+
+  # Total number of items
+  totalItems: Int!
+
+  # Current page number
+  page: Int!
+
+  # Number of items per page
+  perPage: Int!
+
+  # When paginating forwards, are there more items?
+  hasNextPage: Boolean!
+
+  # When paginating backwards, are there more items?
+  hasPreviousPage: Boolean!
 }
 
 type Product {
@@ -171,7 +197,12 @@ type Query {
   ): [Employee]!
   me: Me
   order(id: ID!): Order
-  orders(filter: OrderFilterInput, limit: Int! = 20, offset: Int): [Order]!
+  orders(filter: OrderFilterInput, limit: Int! = 20, offset: Int): [Order!]!
+  orderPagination(
+    filter: OrderFilterInput
+    page: Int! = 1
+    perPage: Int! = 20
+  ): OrderPagination!
   product(id: ID!): Product
   products(
     filter: ProductFilterInput
