@@ -4,6 +4,8 @@ import MyQuery from './MyQuery';
 
 class Hello extends Component {
   public render() {
+    console.log('Hello component is render  ');
+
     return (
       <div>
         <h1>Hello</h1>
@@ -19,4 +21,4 @@ export const HelloQuery = gql`
   }
 `;
 
-export default () => <MyQuery component={Hello} query={HelloQuery} />;
+export default () => <MyQuery fetchPolicy="network-only" component={Hello} query={HelloQuery} />;
