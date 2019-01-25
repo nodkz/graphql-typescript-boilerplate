@@ -1,14 +1,10 @@
 import React from 'react';
 import { Nav, NavItem } from 'react-bootstrap';
-import { Switch, Route, Link } from 'react-router-dom';
-import { LinkContainer, IndexLinkContainer } from 'react-router-bootstrap';
-
-import MainPage from './MainPage';
-import Orders from '../orders';
-import User from './User';
-import Hello from './Hello';
+import { LinkContainer } from 'react-router-bootstrap';
+import AuthMenu from '../auth/AuthMenu';
 
 export const menuLinks: { [link: string]: string } = {
+  '/user': 'Users',
   '/orders': 'Orders',
   '/products': 'Products',
   '/customers': 'Customers',
@@ -23,21 +19,19 @@ export default class Menu extends React.Component<{}> {
   public render() {
     return (
       <Nav bsStyle="tabs" style={{ marginBottom: '20px' }}>
-        <IndexLinkContainer to={{ pathname: '/' }}>
+        <LinkContainer to={{ pathname: '/' }} exact>
           <NavItem>MainPage</NavItem>
-        </IndexLinkContainer>
-        <IndexLinkContainer to={{ pathname: '/user' }}>
-          <NavItem>User</NavItem>
-        </IndexLinkContainer>
-        <IndexLinkContainer to={{ pathname: '/hello' }}>
-          <NavItem>Hello</NavItem>
-        </IndexLinkContainer>
+        </LinkContainer>
 
         {Object.keys(menuLinks).map(link => (
           <LinkContainer key={link} to={{ pathname: link }}>
             <NavItem>{menuLinks[link]}</NavItem>
           </LinkContainer>
         ))}
+
+        <NavItem>
+          <AuthMenu />
+        </NavItem>
       </Nav>
     );
   }

@@ -3,6 +3,8 @@ import { find } from 'lodash';
 import { Request, Response } from 'express';
 
 export interface User {
+  id: number;
+  name: string;
   login: string;
   password: string;
   roles: string[];
@@ -10,8 +12,14 @@ export interface User {
 
 const JWT_SECRET_KEY = 'qwerty ;)';
 const users: User[] = [
-  { login: 'user', password: 'user', roles: ['user'] },
-  { login: 'admin', password: 'admin', roles: ['admin', 'user'] },
+  { id: 1, login: 'user', name: 'John', password: 'user', roles: ['user'] },
+  {
+    id: 2,
+    login: 'admin',
+    name: 'Tim',
+    password: 'admin',
+    roles: ['admin', 'user'],
+  },
 ];
 
 export default class Auth {
@@ -23,28 +31,35 @@ export default class Auth {
     res: Response,
     login: string,
     password: string
-  ): string | void {
-    if (this.checkLoginPass(login, password)) {
+  ): { token?: string; user?: User } {
+    const user = this.findUserByLoginPass(login, password);
+    if (user) {
+      this.setupUserInRequest(req, user);
       const token = this.createToken(login);
       if (token) {
         setSafeCookie(req, res, this.cookieName, token);
-        return token;
+        return { token, user };
       }
     }
-    return undefined;
+    return {};
   }
 
   public static logout(req: Request, res: Response) {
     clearSafeCookie(req, res, this.cookieName);
   }
 
-  public static getUserFromRequest(req: Request): User | void {
+  public static getUserFromRequestToken(req: Request): User | void {
     const token = this.loadTokenFromRequest(req);
     if (!token) {
       return undefined;
     }
 
     return this.parseUserFormToken(token);
+  }
+
+  public static setupUserInRequest(req: Request, _user?: User) {
+    const user = _user || this.getUserFromRequestToken(req) || null;
+    (req as any).user = user;
   }
 
   protected static loadTokenFromRequest(req: Request): string | void {
@@ -55,9 +70,8 @@ export default class Auth {
     }
   }
 
-  protected static checkLoginPass(login: string, password: string) {
-    const user = find(users, { login, password });
-    return !!user;
+  protected static findUserByLoginPass(login: string, password: string): User | void {
+    return find(users, { login, password });
   }
 
   protected static parseUserFormToken(token: string): User | void {

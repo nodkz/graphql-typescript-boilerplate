@@ -187,6 +187,10 @@ export interface Me {
 }
 
 export interface User {
+  id: number;
+
+  name?: Maybe<string>;
+
   login?: Maybe<string>;
 
   roles: (Maybe<string>)[];
@@ -270,6 +274,8 @@ export interface LoginPayload {
   token?: Maybe<string>;
 
   ok: boolean;
+
+  query?: Maybe<Query>;
 }
 
 export interface CustomerMutations {
@@ -753,11 +759,25 @@ export namespace MeResolvers {
 
 export namespace UserResolvers {
   export interface Resolvers<Context = GraphQLContext, TypeParent = User> {
+    id?: IdResolver<number, TypeParent, Context>;
+
+    name?: NameResolver<Maybe<string>, TypeParent, Context>;
+
     login?: LoginResolver<Maybe<string>, TypeParent, Context>;
 
     roles?: RolesResolver<(Maybe<string>)[], TypeParent, Context>;
   }
 
+  export type IdResolver<
+    R = number,
+    Parent = User,
+    Context = GraphQLContext
+  > = Resolver<R, Parent, Context>;
+  export type NameResolver<
+    R = Maybe<string>,
+    Parent = User,
+    Context = GraphQLContext
+  > = Resolver<R, Parent, Context>;
   export type LoginResolver<
     R = Maybe<string>,
     Parent = User,
@@ -1042,6 +1062,8 @@ export namespace LoginPayloadResolvers {
     token?: TokenResolver<Maybe<string>, TypeParent, Context>;
 
     ok?: OkResolver<boolean, TypeParent, Context>;
+
+    query?: QueryResolver<Maybe<Query>, TypeParent, Context>;
   }
 
   export type TokenResolver<
@@ -1051,6 +1073,11 @@ export namespace LoginPayloadResolvers {
   > = Resolver<R, Parent, Context>;
   export type OkResolver<
     R = boolean,
+    Parent = LoginPayload,
+    Context = GraphQLContext
+  > = Resolver<R, Parent, Context>;
+  export type QueryResolver<
+    R = Maybe<Query>,
     Parent = LoginPayload,
     Context = GraphQLContext
   > = Resolver<R, Parent, Context>;
@@ -1227,6 +1254,7 @@ input EmployeeFilterInput {
 type LoginPayload {
   token: String
   ok: Boolean!
+  query: Query
 }
 
 type Me {
@@ -1322,6 +1350,8 @@ type Query {
 }
 
 type User {
+  id: Int!
+  name: String
   login: String
   roles: [String]!
 }

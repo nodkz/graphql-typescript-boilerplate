@@ -76,6 +76,7 @@ input EmployeeFilterInput {
 type LoginPayload {
   token: String
   ok: Boolean!
+  query: Query
 }
 
 type Me {
@@ -183,6 +184,8 @@ type Query {
 }
 
 type User {
+  id: Int!
+  name: String
   login: String
   roles: [String]!
 }

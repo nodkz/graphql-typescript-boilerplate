@@ -9,6 +9,8 @@ type Me {
 }
 
 type User {
+  id: Int!
+  name: String
   login: String
   roles: [String]!
 }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import { Button, FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
-import MyMutation from './MyMutation';
+import MyMutation from '../components/MyMutation';
 import gql from 'graphql-tag';
 interface State {
   email: string;

@@ -6,4 +6,5 @@ extend type Mutation {
 type LoginPayload {
   token: String
   ok: Boolean!
+  query: Query
 }

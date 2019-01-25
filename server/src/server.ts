@@ -18,10 +18,7 @@ app.use('/logout', (req, res) => {
 });
 
 app.use((req, res, next) => {
-  const user = Auth.getUserFromRequest(req);
-  if (user) {
-    (req as any).user = user;
-  }
+  Auth.setupUserInRequest(req);
   next();
 });
 
