@@ -1,5 +1,6 @@
 {
   "name": "gql-test",
+  "private": true,
   "version": "1.0.0",
   "description": "",
   "repository": {
@@ -8,6 +9,11 @@
   },
   "author": "",
   "license": "MIT",
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
+  },
   "devDependencies": {
     "@playlyfe/gql": "^2.6.1",
     "@types/jest": "^23.3.12",
@@ -26,6 +32,7 @@
     "eslint-plugin-prettier": "^3.0.1",
     "eslint-plugin-react": "^7.12.4",
     "husky": "^1.3.1",
+    "lerna": "^3.10.7",
     "lint-staged": "^8.1.0",
     "prettier": "^1.15.3",
     "rxjs": "6.2.2",
@@ -35,6 +42,9 @@
     "tslint-plugin-prettier": "^2.0.1",
     "typescript": "^3.2.2",
     "typescript-eslint-parser": "^22.0.0"
+  },
+  "resolutions": {
+    "graphql": "14.0.2"
   },
   "husky": {
     "hooks": {
@@ -59,9 +69,6 @@
   "scripts": {
     "lint": "npm run eslint && npm run tslint && cd client/ && npm run lint-graphql",
     "eslint": "eslint --fix --ext js --ext jsx .",
-    "tslint": "tslint --fix -p tsconfig.json -c tslint.json",
-    "watch": "concurrently -k -p \"[{name}]\" -n \"Server,Client\" -c \"yellow.bold,blue.bold\" npm:watch-server npm:watch-client",
-    "watch-client": "cd ./client && npm run watch",
-    "watch-server": "cd ./server && npm run watch"
+    "tslint": "tslint --fix -p tsconfig.json -c tslint.json"
   }
 }
