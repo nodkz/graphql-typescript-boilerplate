@@ -1,0 +1,1 @@
+{"ast":null,"code":"import PagerItem from './PagerItem';\nimport deprecationWarning from './utils/deprecationWarning';\nexport default deprecationWarning.wrapper(PagerItem, '`<PageItem>`', '`<Pager.Item>`');","map":null,"metadata":{},"sourceType":"module"}

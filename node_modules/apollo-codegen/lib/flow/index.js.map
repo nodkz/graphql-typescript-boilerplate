@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../src/flow/index.js"],"names":["generateSource"],"mappings":";;;;;;;;;;;2BAASA,c","file":"index.js","sourcesContent":["export { generateSource } from './codeGeneration';\n"]}

@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "experimentalDecorators": true,
+    "module": "commonjs",
+    "target": "es5",
+    "lib": ["es6", "esnext", "es2015", "dom"],
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "sourceMap": true,
+    "declaration": true,
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": false
+  },
+  "files": ["src/index.ts", "src/cli.ts", "declarations.d.ts"],
+  "exclude": ["node_modules"]
+}

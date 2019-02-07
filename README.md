@@ -1,3 +1,15 @@
+# Install dependencies
+
+```sh
+$ lerna bootstrap
+```
+
+# Run
+
+```sh
+$ lerna run watch --parallel
+```
+
 
 # Used VSCode plugins
 
